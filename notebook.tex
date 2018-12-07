@@ -1,0 +1,1083 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{FMT.16s}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{c.-difficile-microbiome-analysis-pipeline}{%
+\subsection{C. difficile Microbiome Analysis
+Pipeline}\label{c.-difficile-microbiome-analysis-pipeline}}
+
+\textbf{\emph{16S Amplicon Sequencing Analysis}}
+
+\textbf{\emph{William Sano}} \textbf{\emph{FISH546 - Dr.~Stephen Roberts
+F18}}
+
+    Re-analysis of data from BioProject PRJNA412501, a study on the dynamics
+of gut microbial communities in \emph{Clostridium difficile}-infected
+individuals treated by fecal matter transplant (FMT).
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \hypertarget{workflow-link}{%
+\subsubsection{Workflow link}\label{workflow-link}}
+
+https://www.draw.io/?lightbox=1\&highlight=0000ff\&edit=\_blank\&layers=1\&nav=1\&title=wsano\%20FISH546\%20Workflow.xml\#RzLzXkuRKkiX4Nf04JeDkEZxzuDuAlxUH59zBvn5hHplVdftWjdTudHdNiGcE3GAwMyg5elRhyP9Aue6Q5vdYGkOatf\%2BBQOnxHyj\%2FHwiCoBB0\%2FwEt508LTNL4T0sxV\%2Bmvtr81eNWV\%2FWr8dWHxqdJs\%2BUPHdRjatRr\%2F2JgMfZ8l6x\%2Fa3vM87H\%2Fslg\%2FtH2cd30X2pwYvebd\%2Fbn1V6Vr\%2BaoV\%2F3xg4IWdVUf6amsJ\%2FnYjfSVPMw6f\%2FNd9\%2FIGj\%2B\%2Ffk53b1\%2Fj\%2FWr\%2F1K\%2B02H\%2FuyZU\%2BA\%2BUm4dh\%2FTnqDi5rgXB\%2Fi\%2B3nOvGfnP3ruuesX\%2F\%2BVC\%2Fyu09FwP8gRZytL3x8uUf8v7GeU7d1\%2Bst\%2B3QbT3eGw\%2B3MPeq17PX5Iips\%2Fw\%2B8T\%2FWr56ZO4OCDkefzt5HxXg72uYm6ov7vOv6pYDAsGEd\%2F\%2F2sumT9Ul2H\%2FLv9f3V13z\%2FNqpkHuJq6MAZpn\%2B351It91jvbrwH6\%2BNl\%2FBn7u7J4\%2Fj3L75b7pn\%2BW\%2B7sZ\%2BcPKkVv0IzjMDnA6HT7x9wx8f\%2FkqMEt\%2FfdvLas288Z2A0\%2Ftt8XdbuXbtr9O\%2FhJXNa3b8Uy3Af9Xt7TTZfUvrfN5dfl2A\%2FbKGX\%2B6C\%2Fvq6\%2F830MOpXW\%2Fn3Vver7f3L2ou\%2FDvw3jd8Hv5T\%2B\%2F8EAYPhPFiCYQK9i1X7VNOx9O7zTbP65878AXf4F\%2BQvyZ\%2B38J6Fn6e1nv74O81oOxXArVvhb69\%2FJHvqjnOtsXc9fUPH\%2BrMPd9LcR9GEY\%2F6APMNH\%2FXhv3uobPnGT\%2FGzlQv6DnPRfZ\%2Br\%2BTF\%2FqP1Ttn7Xuttj8u5B9p69el9lB9\%2Fes3kNLQX6C\%2F\%2B0H\%2BaCXYf1L\%2FzzJ\%2FjfGfLOCvi\%2Fr\%2FbxTUn2xifu8A5IHPAq\%2F\%2FZ44Y\%2F27wXOafue8yvvvf3WxXNRkMRnAI\%2Fjtf\%2Fvsef9cc\%2F2m2\%2BZ96\%2FP\%2B0W\%2F\%2FVkX\%2BHQfzPjg0j\%2F8Cxif82x\%2F4ztIvvZXU40Ab9BYb\%2FQv1Xumx2VGsAmv\%2BC4L\%2B\%2Bhv8\%2Bb\%2F7x0n\%2FFnYn\%2FHneG\%2F2gOOPo\%2F68Ao\%2FN\%2BjW\%2FI\%2F6\%2FbWzHz\%2BnMN\%2Ffw1\%2FjfBv0DtC\%2F6t6J\%2F8P9f5\%2F5pvon3wzv31zAnzoDrvLnwFOadtPV\%2FXvb\%2FSl\%2F3zeLudbcwiEov83guN\%2FJj3wPwBH\%2BB\%2BAI\%2F7fBY4o8d\%2FjH\%2F\%2FcPf7gHN9\%2B\%2Fw5YJP5F90Cwf6t7EH9yD891\%2F5\%2Fvz1\%2B\%2BjpL85Sv\%2Bf7dhE3\%2B0a\%2Bx36vv3do3\%2FjwZ9\%2Bk\%2BS\%2B6809H\%2BHyZL\%2FKqJT\%2F1aTJf8k\%2BDTrPsdfpuv9bzfTv2aUv9nIP8Lff0RO\%2FzNr\%2BS8TF\%2FJfir\%2F\%2Fqln\%2Bc5z\%2BrzTYfzWT\%2FDdj7J9zvN8Gu\%2F3fZ7DUPyIM\%2BP\%2BgwWLofwdhgP\%2FODH\%2BR638Hacb\%2BRYvFkH\%2BnxSL\%2FqFb5Twp9Vfet\%2BrLACqvkFtw7zlp7WKq1Gvr7fDys69DdHVpwgv1rJZcb2mH\%2BDvW7lvu3MZi2KsC1K9AB\%2B17Gn2p0Xh1Axex3SuZ3K\%2FS75T7\%2BVTX5\%2BYqIIyiLctWTtdwd0qRiYO4f03uUwqO4j2Lo\%2FqUoHBPef3li95n8PigYoRWcp4sFnyvlomJ9wg8RY1TWdRmHcZ6PxFDxuji1qjAPpkoE6eFErCEUQxNeznBqwsdgmsRjjsIzuoKrWEuhhjeDYVilWYLLMI\%2BnmziMu5H0biejTqOf2\%2BRZOMi3LUemz73weSa3bfZH\%2BJpwP8MRmK7JPrCoNUZ7\%2FYWF2fpg7s\%2F2YOaAEWKeoZ2RcO9BmHHFOtjh7g\%2FtcMP\%2B0LIPpPy1d5NLTPGilXsKa0Bo9j2Az2tii5Ykf1\%2B1Jpy7PFiWpAqKqN\%2BQOBXie7g\%2FGh\%2FYLaPDjAZm2CPucCB\%2BOWtyMGfnORX3R6zqYXXu4e\%2BVPRn9\%2Fshso4u2Z12a\%2BXGQzz0Zc3\%2B\%2B6\%2BL\%2Fu9Z17umbR6c2o99z3eov6sYv0U6BU3w\%2F\%2Bd6tGRX19dXRFIXa82s98E8yWjFvZiS6vaxLMde\%2FrTbI0EKNGXRC2OBSPRg7e9m2rMT0e6CsBxbP81wunxvOxevEshAFR\%2B0Ozm5JRNZ\%2Bn\%2BEPyFriv\%2BksZ\%2BCBz6bbhUWa\%2BEjRhV4dZWrB1jsYQZxX2X0\%2Bn1d0eyKbrLm9Xp90TmJ5e\%2B\%2FlDqEfujfTHn1EISvfI3DwQIHVfnjlJbGzY91XaRqBhXFvxch\%2B2fndibxK2rQsBMao8B7RvI66TxInZ36E8jHuX2WT0EQr1ajcS9IrMWb0ajUqkWsW4jYruYelya6\%2BO5pd\%2FVv\%2Bob6sC\%2F8qgHyD5\%2FNesVjQ49XbUoodnJEZrxtC2RHHCaIodx29Sg7LZXt7HwrF0UBEr\%2B2\%2BCdak\%2BJnaNpvnsPi6rnL9ZKsVx1vmx5\%2F1x7ruz9rdV\%2FS0sNzS8TD61pYdX0vkUXG\%2FvaERg1T9QWN7aUkWfZV8RwV3oBKNdDfsew6uH2kJmb56RWRMv5Xqn4RJYMeWW\%2BZVsHUSAln8spUuxfZjywwbp4djS996DSTw\%2FjmZNveXa9BzWo73dWaAB4zFe5BWhkRo2yQ4tCUWODDn79rXkuIOH9I6\%2BpNX9If7tYqXqXBsjHDoqKbjO39\%2B\%2FSbmceBJYu4g25GhbPzjS7rU3R6BszHVfaDVnP5\%2BXK6fYhTb4qL9kVM733B1r5QtVsQNiNcvVEDu6MCyN1qwMWqS1HN1vB\%2Fv8uCpABO\%2BSG2mdffHA\%2F3bTG\%2B\%2FLFayo4FJIb\%2F98nYC57aIQU\%2FbZ9YOP148rlsRqpnzAm6QoeJfrb0pw4FgA6j97JP9hu7bvheeIOhuvll03DJai0s5JUs5idaS2wcyuO2VDdAjCQKWoK51f8E\%2F\%2Fr2L2AJsLTpSqKNudAemlbS2XJLIomSm2dedgVM4s5I02YMY8PVGtEchetWvu3OF\%2F6DOugzOC2E3Z9\%2BMZdvQC5uiuzsxuTI2z9d5fqTHA8JA2\%2FYE7oMGGI5\%2BNc\%2FecMLKLI\%2BSO6fw\%2FgAdG4eu0C3hnzXKwneNNKEE26vGRnAVMd7XCKKO1iyllbL9GjHUMjITPjAsfNSQCB\%2BHG\%2FAwSq4whsXnRpLbj5mRH0NaMAre8s3eyR\%2FDZMnEwnGcjPvUJrv1xsb7hhLG\%2BZmXQsF6DZTPyEvO9v2XuQL\%2FtpMptoF6ePs6qANNqePGkwudXwv2vidko2mTcnIFS8bXj3WeJxYHmxXCGGG0VU5\%2ByO\%2BSKMv4jRri5tkOkm7CD1YCmfr3QJT70yF5HMkn4zgOi27MVNz9\%2FGmnqruTPdjhr8XuREqdU2IAzOyi\%2FmqTn35zMJNXZLfUj2xZCbmthgnG21p\%2BOhwyuEGw9ltkFlgdaVzgFg3KIrfPh\%2BRHMN0ZUdRmGXeLHdtZLNEKvl\%2BAJ\%2FlvTHxjQvkOrZWJT9pe3hwqIhuMij\%2BeZK7U7aGw5a9gnOBrjCDSIPsI4tjtH2q8aj6x\%2FKChbawPk5kJ6YZ2Vkcw\%2FRuj2CiECuU2JZi5MPem3\%2B3XdsUUKDTPawWA6qVgEZoRESIBmVRyflR\%2BJJIENCYWkHv0Ia83RbSvTerwOwZ8zGQXzRKtNhqdtp8o9PGjZVdzw4jRmqPuXj\%2F2KvJ\%2FtSfsdPHyqiv\%2BdePk3SChCXSOi\%2Bi9MQwGMIjNCd1025wEgt5GaANL794H81\%2FrrXU2B2FgfaN2HcPY8ssegTlISX99VvSDjz\%2BNaX9fxD7nCwQxj\%2B5xvX8\%2Batq50mTDtSeIfBTcv3EyJT4Xqe9bs0R5lX4a8ARK7j\%2FDi54CY1U69OrPLQ9H5Xqna43CiUy\%2BsfqAPXrzt9XtX3WOnn3wMUkokM7HjPCvLMABTJ\%2FoE89nUr\%2FdmCV8axvI4z5SrsSkqXabOjIbDhIQp7EE3KMnA8u6YPXVt71GB6hGrSv\%2BI7YfDHgtwLSK5bpi\%2BtTRM9di\%2BNSte1UgkI8YbcwQklIdbsSuF08E3RNolq0gyvn2CPDHCFDpS9VGAC14cCBdTEF3f5\%2BmZ3gPLCJbaDYP7h6fQzLJ2aU0AcDhJNb9EwiUGjObvD4kar\%2BR9QDznqduf8DCVhhtgMI9DLlvLxLXyukS0l4ElNilFYxyxzEvA7pBv\%2BGtBCvD\%2B5SKSETW4AW\%2BWYbtPiccB9aSkhst9nnCyLnB7zfhpmPtrCna30IwGxJiaQD6zc\%2BBAgYLqCs5zWDIaVPyMeBJcMvHG\%2F0YAZZv13dWNM0keBkblOLA4hWUlJ4k\%2BWL5nCx4cG1BC8E06KR2f8k\%2Bv3Dmc\%2BgBGH5FaXI2acUwTnKr3OwK1LfzuqO8velf\%2FqVjbm9nRrznwLXQPLH7L\%2FvpeaBJNIsoNC04cC4FoiLTjwRmnQr\%2BGDNq1AIe\%2BCWauBQKEJo\%2Bipy2P9T1BTswxPW1AXJJTPAH7fOlAVAEuSgF5cZ3TvA7THLQr\%2F9ZP94TBp\%2BkF3bUYE\%2BGSFH6mBrMcyfl4WnaKm2TfpVrHJ58\%2Bcr9AXc\%2FT19cm8u5z2gCED0Kv2DQZghf2BTrupp8KrOdjXUIhHRA3KxZmIbhLJ\%2B\%2FZMWa6\%2BCDfZGUYqwBHF0VbfnbF\%2BOfP64avQ59WxZgDYA7ZueA0XGv\%2BR12rVeAPq3v7c\%2FkvQbWRxv28UlJInVofsVwgAzKjUzKDT352bJyPNYEvpKD0DPK\%2B\%2BzyzTIV7HYzQMDcU6JwJwBeCKEvUtT3O2abJDr6gHdFCgqNKGm2Oxda19VPJGrS6gu1KVrsGOKTzCg6EXc8p1b0YQEv2vJCihlpvhNPorqjG3D6ko7Z5kwAjMySPMu3\%2FprhBaMpkGyLP7sOyO6C5zSQ6RCg\%2BmFnifVitFPKdoHTchvaIGq6T3grfyeIL73L188zfQCrecS5HB117O\%2BZkZI9JyeP1wC0\%2FMH745PRs9fXDpkn0Z1JSAG2A3pN7bL0SUyyLQwfQl7PoluklZ4tG34HDzRY5Mq\%2BkFgRoozYeGCNqMODOghLGF8bNTbpgi\%2FQsALjyef6Ob9usLZweD5WFqfTryWnkiPrwBP\%2Fluo86y7\%2BOULiG\%2BzZb2aCriUKutBokvdYbuebEOSolKDL48UYEycfP1aBuRTA\%2BzEnlgLNaQzIjVUanpKeMh0HC4bdMVvJDJKueHnzCiGrANWJwJrfcX31GUW1\%2FU\%2FcYWn656\%2BGftEMPTJ\%2FygPsWCNIulRnGQkL4rIWw3iI6iFc\%2BuF2JPB\%2FAFi7wKM1w1CR\%2B2ixiadQ3vwMbNb8GnW1ZIA70zQfE5Ab\%2BV0DWrcaTOF27wdBj8KwZ5AwK59hL5\%2FBdI2aqMlwJnUDm\%2FTTgeNG8PTsXRD7rLRScvYtfb72trP0t32hwKd1ciyIYWDDXmQZTbtY05HoQvK1DlOyjHLw8r4BK4Yp5t1RiCQ2V0sJtncv5ZUtufrulwShfXWCUwY4VOqPOFjtdtjDG1guT3sNSSfL9XyS2kWaRX1xTW06fDYDvsCN6iKmjE4J1yqkizjqQUC\%2FuzyDYDb0h4IzysGgeYBL6fNYScJX8\%2FpxZt8IXSP09g3iwM98ly2dl\%2BPRMJ9V3baa7K57AFeCD3Grn8kd0jlPphpYAZGr99N5WFnsRBOT98CWanu1YIEXO6SeFWYpGOFVo1ejYMmXQyqb5GR43W8ZhZN898oyK7ikCL2k5SEpESljpBZv7kwGJbF3OMD1zWT4K29LWbqZ6S27FLiNawEwQqAk4Bq\%2FCIWV7M04iWaDj6\%2B2QJ3\%2BcZ8uqRVj9YFb4qMrpKZM0vT53A9g35Sb2WmQgEF2j6FonCRXZy6AMzD9RghOrvEv7ckyMgvnFE\%2BIABIPIC2bNhLD2IBJ7RyQ2k5Gbym4jdf\%2FTFCxYp9BSwFlsy\%2F7x70uQKVAhizmZE2i2ddz7Okbe2aM4oWAF9le8bYhZr\%2BI4FIU1Gc5EZbSM88ImISlhz3RYAkfGnt\%2Bedtzk1gMpfsARZAkZVwk9wsPUEW2h87Bzn5F8R35enOX2QRGEDhEFMcpi0YwH3yxQZaqpZ2JfwY1dyPhHd\%2FZJuo1s16ImOTxl\%2BiESnZguUkyERFmd9hha1LZRdogPZONI3mIBOFgL4wH\%2BEP\%2BRhaWyp\%2B9w8gA1GXaOHhxVFirk9MQzv2IdFyiXxMeBMaawR4\%2FV9ECLR9dyhBQHSrUxBx\%2BYSyKoL9T5WL4k6GLn34UUL58\%2BLekb4ChDFXS0yxMy9qQiLIeQ5CL0popj0l11qXzgaaqlQo0VC4xhkoJlJGSL8Yb\%2FS6BFR8SYdvKhBBAZdbTzzHhPgB\%2BsvNAdEB3hO\%2FyEnMtGkJlTx3b8kyvr9S\%2BdpssQZTESle\%2BScbTt\%2B9McAJzEJNk1Q0gu1gVUaFFcCF6oFtmJK4gPw3FCnds67H656awJHIEWwVHB5dZMfMoXu6w1lV\%2BRptLDbDPSEN7nIUL1wVbBSMvuIsKzZw0zWuaJBSCkV3VfC5enOIzgoJXcjtfZb\%2Bj2loSmnnZjQtYo\%2Fx53fOwcFpeyBDjlZkNbhQ5AIQAppZiUQy\%2Blx3zI8UTlocR49LSc\%2BiOGCD\%2BvTw2P\%2Fd1PLdg6uPW6sTJ87LWDldrIpUGFwJww3oXjH02bFefo1DJYNpNfFH\%2BztFHFOZzN\%2BgvQxC2JZYom2gB3oM8AUIfdU49e2JviMKFVBCpLCO3sRDkYZYbSa7DsxZfBMmHXN\%2BFRzIuIBwfM4pwGPbF8aECGHT3IHmhDAeR3wJbBkIA\%2BdKPPPCtAXYTtkOn\%2FYPOuxFVoRPP58Zt7yMEnHsBBPowPjwdul8Gm6TV5IgE9RnJH8Yr47YPO0\%2BHGp6cNbm23do0\%2FvAoSnlsMnNTCeBxvn31hJs\%2FxKm5g0xjUjhNAKM0iU0z7bjM\%2Bhbzov3WoNIAjkuMT4qoV\%2FLcP6UAbzd5a0I8tREw5Wfa5DHlM\%2BoxB7VAYU5rSyLFdXWo7l6pRDtnnJXoa4oFFWL7ywXTX3\%2BLBzDz5x29H8knb6zX7u2SFhQLLARV\%2BoB1lDwqKFGbt1ulwg2\%2B8SPE\%2FDaA2H5vyohy1xy1kfdkYKOYb64MRnMwa\%2FO9iTCfcXTIOZkJEtEJYMsMW0sfyfWustL3m8UdH8qSezfP4pZJGK\%2BIT4oxOfrOidazVT7S0bQhhTaKR3XINcr7yMJPvnXwmNsegWGReRcC3\%2BhCyBWYEBV8QEjNZFVSamjgzOOoUUJnFjE\%2BA1yblm6sONxtz7QHJDTjWSpNhTsJVphNPxbBZOsZUGTqnKiEfBt0v7ZXv1nJbXGG\%2BqJPT8XqDnGKhqwdo9m3y5qKLsXdts76ZH4C9YUAT91ttN\%2BSGmVPI786ZqZSZeQAXrRZRgMPGzTCtR6qZw\%2FpO23RB83DKeGuGwzliXEx6THUflS0eSrczGMzwgO7crsDNS2xwTA2ynanxiWhWdGmKbT0dmhYq2lh8bS9AywYvp6PlI\%2FZ3FfYZ50BGaFhjaEgjikgLhB3gIUitqCWRxBcOycYzMFt01eAlQAl7UWPp\%2B\%2B\%2BKTGp29lvNVlIrhbwi74\%2F5KU6s3IAlvc29AjuRs4ZSC8oSQnRWfnykeiYRS2\%2BGElKXz4fb4MQGWHwVO2mBQZrnMx0CZaryJhQwpGde1QMQ1ux\%2Br0cn4cwJypyGMijlzw\%2F6gRQr31IQcEQi6sC7BDOHu3xjTmZGrrx6Dzeio045XUAwm5AwMGHLKvRz2GiPFoUYr02UNxyAeJYIeu1uDKrK20nRlNpRZ3BFYTyEM4TNlICbkNhmXFRlOaVlYNmCanxVsHGUMsDzY1skwKiyGZZbuMYCQJZeYijZNKFSZSUDPmjryRjafigfJNYxPtmMf3c22kl84x2tUR45ypRiMDlUEhwweKx1B\%2F4k4hRuE28Blq9h8KL2QWbviijh5wEGN2\%2Fx4IWjycXHFJSg4RDuZNzQG99QgNpKmAEM5AtOQPqnbMWToP9ZXfwR2fxy5efudRDBoinowpgz1WxG8luQ2HjI3d2vNiZnRIFWo1Sf7DE3XBV7R0nUJHIZ1SuRnAQrpNMRZaS11HIjsEzapWkYxUn6PPNGH3UnOonS9a4HmExS8a9z7g923pQ7XkWHj5YrCuQ0IpLT7CyQXD4cn09H6G3jDt\%2FaVIyC4Tf0jJb7\%2BGRf\%2F6agnzsSzjfRs7wLFt0XuLRAkQXLKzuoyhbpYDsNrI\%2FEmhOEQblq9Wr6nWq64\%2FCb4VNER9W9Lc3KODspvJoTkYSqu6OPZIoFP28ihmT\%2BwCU08uWnWREQEwCkuzDC1V1gnh\%2B7pSfOWb4keF9nkZ97QsPRugyujTBk6rwm2Mrk3tG8HGUbZ1LsUbrbFBobXLt6BDmF8nGt0xcs24fomymhU1okA7Bn\%2BDmVewtNpkLZkJZ6avTeHlcq\%2Fc3GMRAo8\%2F4QHOlsBGKorDY\%2Fii13WkPe\%2Bm\%2B2J8E9As8RqC49k5BZ6yuAjUuA\%2BZJs7Gzko8BFImgkctMUpjf\%2BrvZZyPeqpMg3ozz5I\%2B8XkY6X\%2BoEd6ireqJk\%2B4TCl9pgw02sV\%2FpYL0hq8EQRd0WShch3BFF\%2BdMUrMdizFKSPt1hp3dtbhg\%2FYr4pu7vssKUpfXmOx\%2BLnzrwcDxJ\%2F5z1q0CsE5j5B\%2FlKQdeI6Qr5PHQx9fZOcgSDFeeDM7Nr0XHpH5m6wdeIOYtXwAiwGzXHuxxJbzNj70lxvOzs2LQ\%2B9An66LqkpaJRHHI2lBqsJl1gwq6ND0IBY2ZSAnRJg0ZESupJAppZG6CEPWOPwOrlKCl\%2BvP3FmkojuM\%2Fw4avW\%2F8tMW2OTcoL\%2BFfDGM8GQFSbx61dOGkuebOtkVG9VGd2q44cT3qNpFKvAPttgNnlEBtgfeGHgeYqrkGh3xODnlkiNeptsrBVgFDr5H8CKMPFLlYgZneueDma3TkqhFdqMRJTXFHxVCkAGvY3ZTas1qmwW1vNSR1OYioedYkDS6xeHsTn\%2FAHCbzpnWVZdagjwaI7G2JBpegH1J3Z9r76C\%2BGKUVBxqnWT\%2FgiF8q2oj3bak2J3GuKRUI9wY8qjUQX0m44oDNS\%2FPEsREkYwGj\%2FBDUbcqW\%2BhRMFF7J1CdqW23OCiDSsLdPo4JJFL\%2FJdvqfLQlqH3ci1OLd1pVrb4gM5mq\%2BpAr3cV1ZnXVpvqgzQct\%2FV1k\%2B\%2FjZIih0KJKhPyYGfDKT2XXBaOmxuPBvMfeybA2JDW7xYLH9IBxdYt0Wk4bNU\%2Fk1iwmhXEhxt7l\%2FMPIbh\%2FpWSF2zm0shYN0ccgwCiiO9MmF33EVo23ZKOLOm2QGbP1inRBkkmOMRyVX9y1eXJAWVcFtQQBUWch4SG2SvcJ59kn\%2BdU6v1Pa6hPwWREBsLb3dbJidMHm0V\%2FKnNJRjQQ5tEmbpDROpMUOcwmIQIcEz\%2FQnPxxHfaeSsRx39ET7V0TzuHAQsIMPGJNTMtfEnUC8\%2FHykmk\%2BQhkfRR60J8WTM\%2FXRNSfppjVCXs8fS992XibSbU1gMzs\%2Bty7hThMAQy0NQFInjLkwOeW5byjkGefFhCdAX8o2dVCa\%2FPme9Zg1g0tmkOtVyGut\%2BFTd\%2FlkV9KrVgkxhIfqeJuWViTVYmfdHZsdHiERAMyn8bOkwJ7NAYWXjTv8Q8\%2BK8\%2BL63gFjjY6E6nAWQZLihjh0XAStFfVTmpUoHd8HzwyX9ZYc75DWbW\%2FDjWimitkx4KRw90spMreMIkkxQihLHVHjbk7dWgnKrzrxhzkT77BSheLLYk\%2Feoa8XC\%2FsjDxbZ4p2gUbHpTfCBc7Suc0DiV\%2BFpiCiaOy1cXLtUyZ5aX4g\%2FNJ5u1GataYYVuGQEKhx7RwwBocaRXh96IdiSegHX543LYg75rUunk72ENRsssRrCJF2vsd\%2FH\%2BVCO7068lDBdLXm021Eud2WevG6M6u\%2BahzeKp9of8W4jTU6KhsVfZvkWyfgj0LZEZXq6HZnPeImZ75ZiJAX52d\%2BOG\%2FvjHa8ickr2Ex\%2FbFKsP8eNLOxzy90sXVjhLMwT57FDBxnyhQ3r5QyYnI37W7CegiV3Fq\%2FySlR4U1CMFvQCha3UUv1J\%2Fyw2qZUUEYzJNDLqtBQJcBAW\%2FKvGFv2AN\%2F7Yw6wLfEgkNXMFjn\%2B\%2BBp5hLMho7hSxAikwfb4B\%2BV0\%2FtCVNDAFfBafuuNsrBbsPBhOPBMNp84dhEPpURYZHTxlqXgkMuNOLlRy4J2S\%2FQEJYAHWJyLesInHlqHquoT5PU4C\%2BQ\%2BkRFyofhg3zbnBdPIKGkSdOPsOpzZ4NM\%2BFJs1RKLPllAdIlUspm9jSLV0cMy5oN8TKkRFbiiQcxao7v4knmHE\%2B8G\%2Fs5toYrP8tz5\%2BqI4L87MLr4pgDvneEFkPPCOFEtkslwAdOxLd9Bcl7rb4Ov0ai1EftmPAn0jp4Xsj\%2FtXDa2R1Scb8\%2FqGLmVdl3gHuqLCxTLCXVHhXgqvB4Oupi9ePiQvM1Eo6ovY9I09YGi5PCG1VPV5UW0AzzSjJKMX1xq3Y6X2DC5de7csYSD8UUjBXzSc7HMXpXRjCa1eJf\%2FfUq2DJ0GM7TScc6iY8MBgjIb69jomWiDMqlIMyAllqJeGlWDwf1A2S\%2FsU3n0\%2BLk9yNWzWqTHw\%2FLQq1gMHxSwmAP3UNHVUo5gBnytOYqJIZiVizuRvn4VPwZGNJT\%2BaRqX509R\%2FxTXosfPhDeoxgeM\%2FDIRXo46VPhA6Nz1XZurICOCoeENVqh6bjYzaFsYe\%2BHkL4Z0TW7nKxjGSTIvjcK19yfI8e1uhpj36fr0pSmeHXYGx25aQYPAVy7xvioMO79DnLMt472mhGhrx0H4mKTvzOpv6ZyR9YvXihcnSfrN5RNqYLbBkXYOU\%2FmjXK1LYxfCTI3wFVZitaoniyMl03RgSwLN2\%2B0k37nEdFyd1bSeg8qhHfg77qAw2mUo2FkBosE5zkRkz\%2BSKRCvJ\%2Bghv5SKdgNiiNTxBT505Owal833F8MbbYYH3HIJmaIkv5YlXSiC0tmry0Lv0Tn8hyhpk3yjdl6jOvUCXzbMz1llu6\%2BJS0NKC7ISpaANh6oxTT\%2FFExpapqztF\%2BDCN4e117zOlcgMPNDPSVccXNnOq\%2B34HeIBhoYGH4y4R4YNIcrW4sRuanya0W\%2Bq9pvmDvsf6h1M8\%2BswM\%2BKpxi12fsHuG3UcVwRriLLLN8z0kMfc\%2BmAO9qVbBZJ\%2BjPTevMRhzoZ\%2BpvBvW6\%2BUIHLUrN3O2Y0veAg3LjUuXSRli2vOQGcYVZmgqbawLvdp0jgQgMVt4r7LguagxT1XxUhI6HDGKLK8It36kUKKoWwWp6ohNjHPg9DzsPhlIAwuhYLQ7Y5y7cNCZIF0wNkviXpeChG5V1NPgLpuqoG3NA7XP3o\%2FIZxExwIpeO2uTSxFDcSHJ2iuINfD0gPt5mvCVBhHYKOzHQWMYPtexG\%2B0EYCPJ2ILH1eJn0V7DgyzRYtUaQeKfEbCdLexSJCVQXM4iPMMTBD027dX6Of7aYFBJUj82kflQ\%2FvguYvHVpHQSxuWvvRzp5gwPfacE7UsrJY6pVGyydUXNjM\%2FHgPXLOZdS6XHTejR55\%2FBd3lwOIVJ3SrPcjOqJpRbHWQxd7ul40p1wVOmHtKekpx4nvTIqkagRvxfQg5D35fj0ielFiQ\%2F1IHl4A\%2B7TH654wOPxxvX3UiV5mTznafCJRHq\%2Bxzlk\%2FEXtTkavlTIm9Q6kl5pXJKK5zMFWeRBhl42nGOau9VnMPA3rSXjKGQtCYH1iY3KthSp2OXgfoVjZbpE7ckg7JggHg7Q4zccp088bUqjPJOIrJi9Y6b0nVPBehXJKb1X70F7qu3ZFFR\%2BEtwvubbQkKgC5Qwi\%2Fd06jS7DpLE\%2FP4A9fEQaEWFFsyEFlwWg52M2SEOcb2boeCezapLM6zIu0H9Xl4BAPPCEbPv7U2be3E0MQdv04jsrhaGuZbIaTatuXlKPq9phgVHtcb\%2FyZI4xZr\%2BU\%2B47pQPnDYh44nrUF2tzKY2jAJZhx0u0u0OgFyn4binKVWZPZCJ5LURAT6xuSgGqVN1vwSiZHH6lQ7BfDAQlIMX7Fcb6DK2bozSLICNsPvWOXcrB2y9Cvoz1d74QvWP1DJshdqYuHO0yL7oeztiZaV41wLlpfoe3Vr3ZRXX\%2Fa09ONiTtJGkUzR\%2FXm7moWbcftqoWtqWzzvlpPlEZz\%2FWKbZxV3svd\%2FurLLq3rGJk9nLxsFCI1EmDGjNJLx41\%2B5j\%2FhgYhBHdTWcv5\%2BUJIiQJR\%2Fj8Pun4boTQt3cwOXuoXTyzFcJ6AGsbHy7Fxpb2Ydj4CoN0Zaf35\%2Ba4jdWp1SsTWo3ABxlnkIlX9kTBzl7J3DDQtdQnbvPCtOIh3NBj9Otz8fybFBw52VibtqR9iSB8SVaqwBnv684GHxhTfXIJY7AScYQbCtbgQdNEa94xOLJPX3\%2FrH0LDIl0sPBvhrMKUajGqxYtGFYs\%2B2BzmYW0rXAUh2qsPlXyyKDQLpBRPyBTPeqNfWj\%2FLrY\%2Bl8Uu7FD7E67pG26FKU30GawLuQ7GosgVFUMMqfqB3QvZCih3Edls0eIRjvjpkM25uxwqG5fpLROT8pHb\%2B2D7IHjN25JMUVvYxkLqFBsQyBHs9Q\%2F7TLKerJDaWqHuq04vCoVHK47mDBwKh9cxaRLmPd7hpN03x2pM4sfippibAeG5oPzt0xvmOldDWkXklfqgjplImxO\%2BwuGEMWzBsgJRCIDRewQN8FBTDsYwWhvDITs50T503\%2B3Eq1X7aK112xvziJ2Z2aOUy3qWrl2EEGQjEYYbGGIYbXiWjVluPszuvKM1H4umevQkMeMgfnbR5JBct8AqCwoHquOPnjKYiKZiyXJjuWgZOcs9sJs4AbyOIM0VHJEMNotVPSuQDa2zRCZLw5PTIAkkKv2Widl1ZD2A5PKdKFxFkMnA5jkjFKF\%2BBG0wGq4wRAVnhtFmMSvNmyhR3Xg0uuMK190v9FZMv8b2IXSRS53I8V54l2NEn17vhJoJ024n4i3oUiBasn33Q\%2FW8xbrxpHqjGXYhJJBDtI6CEd89vvKF76feXh0jvDeuB2iFiPo47g4lsv3CXGkWXEEqd3SFMuG4gf6FteBGhKn\%2FARZjIkQkWByE6SjkDw3AM4z1c9mmIUceu3VOCPjJyE8bwyWPlaaxCyyEM11eDuL9abKpF1qhPE0lELZFq\%2FpDCEOzEvprMkDuF8Qy92zrVMJ4dIz3k\%2FeXwoqeS6fEY90zFX2GHFiZk2c2dPwSOxTCF66rXhyk1\%2FIOB53vZdK3FMBIt\%2Fcr3V8ZFJES\%2BzpeOPF4MFnvcqNFV3L9PhvW1IGMuCDG78vCzuXu5FZbxAhYIjDApbKyOC48IpxKBfUF1uqazRq4jeOw3OXewSTnWdlS1U8CjoUe66OJDKJcuLerC4DSGFSu4TB3lw7OOIs17pHKlvItWHAniVFxBVWfngqQVXyVk5VEcyL5RPyoMiHQygRjKVPLK706veQaY60q7Bb8V9Q276aM9HZ9p3FPdI5Gm3XSl1AvqHvVFKh3cvSdw2c6OMOQdhsjv\%2BVJyZlQ75aUrzItn5Mx\%2BbLSXIyPH70iy9aR1pRR6\%2BZvm4geJoxsKqaEBqmp\%2BdAl0D1gDTnw3Ez\%2FgNKERcyQiai3o5InCTDVGtryny5X3bZ3BNHknIek6384VysNTUiYejZ\%2BB3DgJzfap4im1McLmGfGjx1f0MzKqBdIZP6F2vHLXTg2vcdNYylxgzGeiGusCq6YvJfQ8pANJoHbyT78ch5u5gCcdqBGQk5ycFg31yNv36bnOrKgNrQEurY4ivJ8nzyAXfR3B\%2B\%2B7D4\%2FqWGgFnR6OG36y6xa7RWtqqCR1BNoxhlaSTLaKlf\%2BEsd5jG6RsUWl10i\%2BrWbhdyLZ2bmAp9TAEW1nAP\%2B8FYRkckO22ZBcPP\%2FF5jTCnwgZYUMBSbkl9ZUrolFoOHj5v315hkPxqmif3GY6Il3zYjfakXUngJo8Xn4SpmoDAfCZHbl1qw3MwIklkdYD9NQ77e0oN5QU52OcouYOxsLSavek\%2FC75fxcUe9gGB4hwkM5Bkz14v\%2FVtaYXogYoiUyIV9vysuMFmr0s8qnW31niqcz6uakUu74iOLMm22iDo47Db\%2FDtNpWuD26J\%2FPGkUnNYf\%2F62gXkFSuC6o0EnYQoWrSBpk4TykzoyvLmGcQCz1Snima9KA6ZG7h3Ma9gsF5PB\%2F0h\%2BXAr5qshiOGbYZSPw7o6tnD3nFVs9A\%2FcS9NqZ3eo\%2FDh39u0G9fiuj8kFdNsb85e7j8\%2Bm1Y62NtbMEoyHe1E\%2BMHpFscybTzxuS7eFJydE8QYyHL\%2FFTy\%2FXmGJmeIZhW8nPLcCjQ61NKgFuDs8bQt5pvZwf5qDjFWKpjwg2XfypqJcAwZ8IonjXuXGCa3xrtzx9ytXbRbxaaVm38nCoS1\%2FJ26iVhU5afjl3XF0LyWlZFlFAqdg6RkVo04YTzbWOlMUOq0J\%2FOlbFX5dZKTbYRRDywVTFVWW\%2FO74onbbqrUNWG3J5Ku\%2BD2Bn6DJJonPObhxGEDlnImSsdHqoLWcMxDBwM7F3oGjUXvfMoByMvXw0jqeFbMMN6TNKdYbmF8ys30fcSF07j1o38CYi39mbk3iWGmohuxu8sI9RsEhJOOVN6daQx6mI4gSc\%2FM2fBXpYkjB3njdJplyvXMEQjIg\%2BwXS1oLjjlkDsaOHF\%2F8k0TClklFrYwde7NfdI2YhsoB08Nr5ui2q\%2B0mq9LeONJ9V71d5kNw3qita9P51MPz9f6\%2FMRosjCFDFPtEjiI6\%2FrPjug\%2BkmM\%2BFo47vMEmVOP0Upkxn6ZXaBQSqko4oQatQ3vkwJ6tClL0LIQGjVYTFjIDCpADRUD8aloyYq6KAFWYxHV0hWbMOyAx\%2FDAeZ3RgfBwKptGs\%2FmR5EJ9Nn\%2FdIprEPdjqeeIHKRRSy4jswwfYOMRXbuElJgaFc4dA523s\%2B9UX0nwd2s9ixUARjHrC32Um9joZCG9VSYYy3cNT6Jc6MoesYellSXR6jusO7zhNclelEWNMhqDYwF\%2FmMBnPsm1YyiBXmJZ\%2BoGZkHlhEx3njezFRHOGcKn0MoqfEkbxPgAPD64t8F9zIY3TO6OyNdgr5xQi5Yjoq\%2BXZZdPGV8C6UDYPR8jAwSOJLOSo5qNUNThQ5kxwuvaIcXap4jPE71RXFgz80eJIwU6QxjwQoXmN0EXokplJSCr\%2BgxLzSo6dH3ejvM7ben4LHdGtINjOiNY9okHt9c8Fjr2LoYuOH9ZNeJzrPCZ0jtXnZcnwp54rhOK5g07E6FdIDEtBgVQM\%2FquZn9dh13VpCUGiVRjfpSAt7aVKMmj9q1sHYmT7yqvm8\%2FyKuwDWdzKG27d6tUovilWQpdcP53W7jWqTKX9DqP33lIb8k3EIUV8zjC\%2FIaIaHukkcy3Duu8E\%2BPOjbeg8hi4AqYTs9ZVVjFue\%2ByILOwglqVQfSAH0jz4GSkVXD0T\%2FNSX1yuTK55pGFYz1ztuYmTtn7uB0G7AhCzB\%2BBHMnCTDMrYZl\%2FL7\%2FR44t6gXlFmYabd25qZGna1U8RkiE3qcY\%2Bcth6a0GM6qxnM7x\%2FYlFxrTQmkNAHUPZ0RFiApoXkNCkBh7Yek\%2BUdG8RNRjFp73zNbfkisQprXxAW15mdk5gZiGaWCjMItIOjL64im9oKqXvBeP9sItd3qZIa37Pon\%2BqhYM\%2FT458MLm2Jw\%2B\%2FXThL\%2BoLFsSufoHnz4c92HnU74\%2BbjtqW1X0MC3ntTMX5DHiaL\%2Fq0VRhIbu6rkMxuAbbz\%2BPp5s\%2BhP4ZgFW\%2FMK4FmjgBuw4fiiQg06SEuYZ7arnP\%2BssL3RIZWS3K3qurGjaKolDsN4yL2n8WpV7cl00MWeNH30KS5FCdoG1FQOe2kuGdyDw\%2FbxnVtslitvQSSkpLmymeEzix9Fy9gTA4O1DvqoWqKxiVY5bzjob\%2FNF6fhyrAe7Nz6sHAYbkaxAfkj3sssAVdqXNnT88zV\%2BcInO8T6hNhNAvxHdbAiUmAJzYht7t16\%2BaTlIuB8MUvvPfTdW5jkk\%2BP4SebY3OIYA1ZC4Q0Xj9ZU7EM\%2BdJaMtqx4SHaTu9x2q\%2BcbCCx3uXEv1ri\%2BucosPKqQvRupKLGgwocD9GBQ\%2F69bm2EeucZEtFtpTHGJhvcYbftNDiI1B0ysnJI1E52pml0I8ti2N404sfLniCBKa3eKO14xZ3HXuSvQYFX0QwQPY05cYk77z9ag2VXmDWU9lvP60U3VNxc9Vurj2OBVpZTrBENPq5pS2SiWzJ\%2FeBMKqnLTmCGCcnZXeMdihc82JxGewhkY6R1JXLVQtPB7VmGA2Z2T\%2BMhnKWZ9FCjMYS07eob0tWEEkC0dPHok\%2FyhZoJjIxde92jMaHY435a3JSFcdh4mBy6uzRMYiY3Tv3FhYgPleWF7jcZTL2J8DOBOs58ByLwBthzDYJohmz8\%2FODOc199gTK8eTeqOz3wb\%2FzVwosqcxmrF9u0pmdYu7TVynv3SjxXdvZdYW4eESnTjbIGi7INrOEGDgUEyykvybrTptBZfFzLKIyzl2XXL3EKu3cm\%2B5HAFU5aUFc38qgtZgOztcUkWDbBfL2iZWpnfOya2nE8GSqP042g2iyasBUo4pIJAxnVURM7lo03c20QBpSzjwfyJhftDGVBD\%2FSdsQemfhQEQO7bLREy6DuGbws2z3gDcrsklGumX5Aj6h\%2FWR3rphv0y\%2BJh9FjvO\%2BFCE1J9EuMFYN\%2FDDkuBZzoIp7W0MGYes7E7r3b7LLnU1UhRjB8SMCrwgjYhmPtDLldgjWT1eHjVbm4Yv4e46p0ozXFWquM6fnN6ayLMCSTNbMqKU16MCO3fOzdSdLQrLg41e9LlL6oh12ueAnETmaYcd5w\%2BO0qpktvA\%2Bt5F32bHsdXGq9oJoPQsvKuKo8JiCpbqJJEO142VEdfT0thTxFVA1Lr2vkt\%2Bj7xtZSvyIul1NxoLDekgSX2rTSJLAcDuEgcJR2\%2BCPa2CR\%2BF0qkGTxYmk8Xwx5fZCdwFrkXcsD6EYTskSU9lq8T1dPX27Pi67XxJPOOGqMpK\%2BuC8punJQGesTI\%2BmoGyTmG7z5rtKFqL0rqLOdAeXoe6H7uBSmFW8ca1yLDCOti7ezEdD8M5kxwjC1\%2FlU8XkrZBz6atjufcLwOdy\%2FXjhGNL78xVKcRk0VwTk4y3kzZi2b1fdxiK40mdwetod\%2FZYJONJIi40CI4Vs4mjJEzDC6HkRtL64B\%2FYbiISG56fsCiEjqk689DXsMoeD7pN5EM7KEdzk4GBncPwLtfmM0bN1zCIA37ie1IlhllgGAIXYi\%2BYwunN0sz5jhVJjcgQO0PxyYg4u3ssVXfIoww337IN147gh4G80yL4uLa\%2Bn\%2BdTcaKRG1RiGsxepG\%2Fe7kAKwyXkp3jv0eMRzOwRR0diNI0Xr8\%2FXkd7ZAmNGFaqwm03wffeK3PKFVZ9jdhRom1ViM3oQzwYx915H\%2BIGtARQ6jzrcVxLabc\%2FUZ6ZmkvCMaAZbci676dJWdIb5BtV\%2FWtwmuw\%2BrtYm5Bom3XSiwRFerZ5UdB6sUD4hWTYjzWGYYjOfz4ncxaCuBN5c\%2BY5Wr02Wd2gVc0uqo8YrsVcptmYm9yrZMI1bV4cCKCnfO43p3zq29h5fJ963CY0iHcR2fIy\%2Fwsli5ZtoJdfe2w5lUGKEMlURGrOWlsTh4aOx1jFAhUA09PJK50iiIv28tIXdWHLi7xKqRoVAQZxaGcZO5Vtszko3Bq48gglBXyLDE2NoYn\%2B63dcZETuFC2wc2ul6N\%2BOwojojphwC\%2F\%2FhCdinSQzJcP2SGXfd5BklfnsXgyI9aIsDnkB14LDVfftcCwfNesAr3jCS\%2FQ9Zr2L2ZxcJNjPV5lGqgJWYxgzzB66NMboNaj3k9Z3ZBRTk0eVEgU60HxzJ1oOnw0ONJNhfFQthih6dRcYhuGcXntmZLf9\%2BBJqHFe\%2BB3c5YJZ5p3SmNVXGKm\%2BIfRwr7BMD4u4gidjzhU0M5Af9wwUwEtHgP2cu0Ilfo9imMPaO\%2BuJNN1y8dOwqlRthvn5OHbfwX0RP0ZGs8HLtOJnZvwp4iIuJZppJSsA45qyggo7KWb0qXHqSmrfjbKKOn56PFrI4k4qGNm3yMa4VJofbZLyL1q42iZFl\%2Fy5PR8pMxMaMs0UTMg7JnISE1XwKskZLb2EFHlGSchMvnD4vHyqq4f5wp0WCVhOp0UO8aq3j4slIKqIV\%2F7BXEWHBArDPOW4dG5qf2cg5BS4zGYhoIoYil3v3En5I7mECAmHUAlzk3oZBD49yyc9acF7INPZwirvciA3KsB2Nc03OPBIo6ggLgibQRVVVbPwOR\%2Bv\%2FKWFSPRMlEt8dxrBMNDASA71uUNHPLzDO\%2FyEqai3P7uMWFdnJn6ViJq0aBcmmcdSzC7mvRI3gB8U5aO7BSFm\%2F7OFKCyj1CTLnUcDueNed8TzGeHD4vqsloiT7VZac\%2FYQhZM8nVsQr6nbnREbdfzUE6Xb9PIH7HpE9wQSiQSXLd8iog\%2FFqz3e3ws3cTkt0aXx4A71iRzdPytkzatFyNSGL\%2F0ykpmtbS\%2FPjCNG3OTO4MvUc7uXxtymWO0NeDRbfCqIl6nsQSgGN4blbHVvbGhySGY8pVjQ88Wy4AxPyGpZWPhB4J\%2FoqM22dR6H2RTd\%2BAB7iySKLzGMm\%2BvLPZiQ\%2BewwB83Nu8jp7kZkN75M58FWjLlRMbsYynk0Y\%2FA4AqTzfK9Lbjaumyn6Yh\%2B7sNt32soKqe\%2B2wJMWzrEIn4\%2FOJ\%2BHwk8OW\%2BzTZ9vK4qelmPlRid7rT1puBMqN110\%2BIqPi1gaRjiA2lQMPP6ZVmId7MEIn559zMCr0wlhZJqiGb7OdbiIb8KERpXzICmo7gWIB98GxegYkyB2\%2BfZ8LGHRkkXUzXyiisM4nLZf1MTPOcprQuyFITWC\%2BhHrBc2rVQ6EJK\%2F6kr0V5XHGx76R8HGdDRQhFG\%2BzEiHjJuw0KUDyaJvW26UXd02O4aRIzRAaqbC4ymDX8KBMpVSs\%2B0IW8OrEpWbp1s\%2FgRIgVg\%2FJlclRWeyd\%2B5QKBUqUVf\%2FRAK6Oi\%2BnqfPn4a8cPzo7s\%2B8X5ELkYU2QGPHKg70pPwuVAtW20x0DDRM4O6aFdBedH7msNsLVpwvHq8ImA3\%2Fa3xlj1OuiSHeyoYLNaVggXc\%2FCjBiYYWQK0UMWPExaPzOvz3gtkKEwS79J8S6Wi4AvTDOREZ\%2F7nd954ya3t03YF11iEaOB\%2Fx5kdjDIFzzoGkZXBlmja29UkLy\%2BWyvZoFBac3\%2BPJyOSzLxM53QSqHwzCg5q5sZ\%2FkN5rLBKjZBh9dXhHUKfDfO\%2FiA\%2Fu\%2BlSMLkXtUQsFyRdNYDiMZBcMxuFwcUr\%2BoYdMzrHdb9s6UjpUnqv7Cvi\%2B\%2B41m4G4sqzEXoYrLd2B7lIeD\%2FCShcZLzjvPucgHWQZG77Tz4Q72wOqVJpeqPVUHdn7vqO4lsgqkGvT4Nd9Va52iAhTueDgsDGb28eK7DF85KKMbjwvrmP4V\%2BLVS140kqSViKvensKXXb7auWWRkdc24t\%2BaZvI1qxN8jPplEN4wzITd7ze\%2F79cXUWS5ECQfM3exXBMMTPfRKUSUwlfv1LPri2MzWWs26ZUqQgP96Cs4jclDoRs5vLKcKuztyT997ZdPiHhWnQMnVyBKDWn84rdsBbbTOPVZ0Oqok1afHN\%2BqY0cBmFIi\%2Bn6jZnAhTLlUP6Fc4csqjXgb\%2BSJeLjFFt2p2MJum9u8\%2Fd6iZg\%2FOg5a4D0e5jw4uROW1\%2F\%2FGtgMSVo3KTI4Ovu\%2F5kLXiwdd\%2BXOhWZO\%2BxinZruwxxG0zdEo7b4wthrF\%2FVdjv9RLqHzXdfy1elKEev2f7Wh4PzAc86ICGcW3RdotK5P1YMyvEtXYBI7GGpRPbcwyd7Jz6sJHy9fER0wW0QjCfjMoeKQ8RNLIRJN6uFRyQU2UbUFCpUkWkY3eOPQNpENK6X4XSkXi\%2FlnCmemHoE0Wszn0jSO4xZf6A8rfjgn9faMEKuNch5ot4Np6cBHMVBgSI5WFUBgkDQ783HTPeqO9AWbtCE6q6TSxVxikVZv0VZih7Cyq9x6yhbwcX1HkZMk\%2FiWfyUcDOjLg\%2FZ2Jq8uVAbNhER8rhkuZsTkWVyRRfvk4jBCyRQxKYLhckwiu\%2BCglpTAqy4yGeLrQAPihrP1GqwC8zRk8xr4R0cCNKQxsIMumlFS942\%2FRS67OVa12Zs2\%2B87EeRzOeK\%2BLs4LsPvUlWZWXwjbzynNgU9UOvH1g3CMFQACuK37xlBJdlrmwOpZgfjX59mCEzxHSe1ECpYr5iu\%2FHLZvvr1g5TIudmg0Xa3pqSwPhcz95se\%2Ff0IaD3tZMCEhfBnqiDkQJE5oCl4X1G49hHSM0nIFiaMhrB7eOoZz1AeEhvbyizO1Cmt4Iz4a3CE5xk2gxY7rXx4gfYhT0o4Hei6i1ecKw\%2Fy7rIPTHra3NiPECGFZk8feo6eyMYj\%2BdfIuay5PtEn4cwKPGk0UqD9\%2F34goqLHrwM9DHtY6C\%2Fr0xrV9eorpZnABLIqM6Ayt4O4ICYt7iQPviXPgSCfpM28Hg4Q1\%2FCtd6TWAgVMH59aj4E4W1lVIru0uusAlQV9zv7V2\%2BL8mMR\%2BAgpSR6pmJmF0JzxBoABcDU3cz\%2BIq3\%2B\%2BiPOxaLp\%2BUeAsb4MUhkp\%2FCwsk8w3dUIUPLEAlr\%2BJQjblv2q0EXPcXyrfRQofqR1fsWRsNJnYlIp1916O6DQWLEqGTbtJ18d3JFxn6t6FC2DsjKSFjk8bsA\%2FGzUfrfJqwwQal\%2B0\%2BQ\%2FgY9tvwpVARlra1Ky35Z1plTUuB9dewFt7WYbc3P88\%2BbPR508sfjnqPrzphLFz9p2Iat\%2BXQRjlMPfynX7vUUje\%2FxtD7gQTLmy47FBVqSOMp94E7AuMATwOCMgPR\%2FBQEXaKqoJnGx7O2cOXtrogJXqWSMAU5uzFzmP\%2Fq1rPGgP87gCLlnffBg9DcIki1EXPqH\%2BsIQMiEfJXKLG6EGtmcOm0GTbEKeNbPHb6cMoj0F9KiP42\%2FAj\%2BCCVhjMjtg4VCYHmsnf7iqPEnkLKcaPXaTex0NsB1xvvFhxOyOx3W5wQ\%2FHY9\%2FdjCDXwWNOSF8NjeXByY1vHSvY09kUu6W1MDZrThg79fGM4GFQ234Whf7XOSIJl4QRMYDqBjrVGM5vT2wH17\%2BUoMbH99XBKo\%2BcTaEX6UuVtrfubF3T4DF3QwwiLv5BQzkkGVUUBwkfCIfOpOB3MW9Yy36C3Y9Zw4Zrf3Ajs53Fk1qcWPIFFSExZ6Vz4wQBlZOZjPTzjLZDqC\%2B3SfI5zXUbgVgjP29tNLYs5UDFDHdhVV7DoFn9apbquYpWrHqqHCaDKq2\%2FUHaz6tzNudy9sMge\%2F21g29s1FHSWCFBBYsmzAjOPiEyO\%2BhM10l6EMdSY\%2FtxxZ\%2B8GpbG8NHuxQq7yhB3htX9O03u34pZr5iJz9iWXxu\%2FVqxpcZHxePgvZnBVyTrLSVuHQjHldsH4FRLd4COJ7Pf2gK3K7zOEnq9Z\%2Baj4DCkz3p50FoihufWK3o3jfWJbQHSU9\%2FUtH17c4oEdjU7EeLTbgGPyYDIOTN\%2BKBoRB0T8Fn8dA6pLO58x5bUGtQMc5\%2FEVwPuD\%2F\%2F7Bod0P6sOKFKnIw0ovVAi9\%2Fg67HM1FMyO52bxsQ7LeRAzkRW0SSebfWl05JwHkjrG3FrQK\%2BciV6K4NfyOjHlSmrIS8\%2BPC8xSqghSyA76y3poqhF8UTG39QhVa14QrBjgu0n0R3t4f7XZRNAZbTOMV4dL2Sr1UsSNljAC82fewYOzMTMN\%2FBxqnJDeicuedDlSGRt\%2B\%2FSPRvvoQrAWXX1uBR0I9C\%2FF\%2BJ1EV7rEz\%2BzDzNCjuCloNM7\%2B1RnKeH9deMMHfCGakHxOu9aTWD1R5RnBzJXG9aTauxbukvd1iNoFOrMuXKbOKsOz7ZtlBlRBYUnI9DQOm\%2FoN4xReWbDYabkxflm3GEmqZXYlpd1UZn6r7Hhm873Jgrgpm2vCANL5k\%2BWWdjssGy1HH63Zv\%2Ft8yrL9XBMYUMm\%2BxTvV76fmOEp3\%2BQaNX3quK6XcB46NVpLKZxEd0UycmvxFi4ww71LlDwx2ek4lNqKSXg2I1cWlbcBpleM3nlELP5If\%2BkyMa7SNKqjaeUjPfFDETj6MLH1bHdbZ\%2BfHfivhr4tPq\%2FaUjZ023Uc9VPqRbHJRddNh\%2BCqvuANUrtjGN6Aw7uYU7mPTMWzrR4zsJhPec\%2BrlSsUPahCTXEYqE9zGQro5qSxfxpwWS1ZuvJiZE12PUg8nHyTV4lEWRYT9guJNxlT4A2V5E0y9isAWrD9RF28vh9BDF\%2Fu5\%2BNS15XHYtrk8oKXDR2Jkgpyth3iChBsI\%2FkuvKGK9M1LLI\%2BVppGmIg\%2Fv1WRItWqmA5EY6PYOSJusER\%2BKq\%2FtClXXlr6Gq0OVUxLe6q6MmpCK2Fy7LuSbrzymUOVZSq6oI6wBX1NGys0Nc7TzgAgs0Fpn4DfVHe8r0hr\%2BWohKJD5z\%2F7klXYUt1Enlaz8rhs4Ez6b\%2BvHZujuY0t3TtpprZGkunytdOqfl2ybFflAewWev6wFluNuAfdZ642c0GCRmEGzpfwwIFsR\%2FSRvp1E\%2FTES1kbZZGa5PB6mKA6SKDlOyXT3Zjg1VD48U3hmPa810OIkeLVMyaZpbTffCBv1VGkU1Oj\%2BqGYWNF7GoY\%2FEl2wo3hDBbPOjKqLshlDZooep1z35xLySoCdv8SWmPE7vCehYDfgY1vUE5X9QqIFL0hYvCm7qy\%2F5F5mR\%2Be2ezWRwuId273\%2FeG13WucJJZrimuTGcX9M9MqLyeFNllK78TiOH3ORWXpi21Ty\%2FZFB9fZ\%2BlW9C6HMAdYf9yUFMKN6tQ\%2FyY5Q26K9TMnTwUJi\%2B8\%2BH2LDGgTuAr2\%2B\%2BAVCPPDhUm4D0Koc3LswR1hmTOc9DPMX5p0WcxrmPVnujvhv\%2Bd\%2B8OYRJZBlhQDzO\%2FnPgEu2XqJcODE092PI\%2FNMOJ91V6r\%2B6lXs7KVp2nJD4cArkL1fdduxL6pkLDngve5CmD4e34XKxUELxzADsqEi\%2B83\%2BbS\%2B4pkM4AdBz\%2BBBpcOjdOwOVpDDVU8wHEn9GNvvrD4K3aXvrYOvtfT9voXFfO4Z4grWZeO0ojd9zUXhKZxrjBI\%2FSuTiZinZZrxiflOHfdQHAQYey6s2If8Lg3HlQxXID4wU5K3oqwl4vVVSBAC0jY0wFX\%2FGSHVtW1\%2Fp3nJZ9\%2BDTFKTwz4Y5dKdnPtXi0WFm\%2FWgRyS9FZKvxT2X\%2BjxHA8QjKSxyhLrEjxK7dlHsKApoas0tdtf\%2BY2DvPc8\%2FmN8MOJ\%2Ba7iZEk0pS6OOMZ59LSo21z7FNwLLE8Y9\%2FZ9FJGnn0KmsHDm\%2Be6aO4N9UCr8Td0RHUwWrbP3MPD8LNHNKB0608pfyqKLGhDo2sX2m2QQ0t5R6zbHT\%2FUjdzYLXsLsP6\%2FvCVcsewg1\%2B7y5CovCS7Sek\%2FhWA6RPYp5TcWiGxGldoOlpkV692XxE2qNZXlMGZ5pv4as\%2F1neVqM9XuDRWoLkAMz6EHZpDOdgJLvBycBh\%2BgB2KLsYRmx\%2BWDuTbBgS\%2FhsB90\%2FGIrPO1OyAraFBFV9e\%2FirQ5GjcnmKyLqjFbXGqULR\%2F\%2BtoB\%2FJ6eUx0YIxPn7eFvzZjyAQ4\%2FZD4SDq4ytJ2oyDoGMtXX6vlYstdatrN3SNTD\%2BDOqbhBfzt1t9SGWtTzMx5T7fIdFl9DEky7lH8lwpVL6atYaZDPF\%2BIbtHVMzagOKuScmXij9sebhp8uVDgx0O5xsfoMITz4XDLW2yQYW3\%2BVvm6vEONU8OYetMsoLTfIQQ0isT\%2BtdYoQvo2\%2BiMv03qOjOsjewvI\%2B\%2BvD2lf3jUZiTJ1IjyDG7AJp2gt3HxN7EfUV\%2FtYE8N3X8crAGEDm21d9nSRonpfSxDhif6Re8SRf5ss\%2FXQqd8LQtUcxuj4vv65pn\%2FHYB7e5IdAk8vcxKG6Abja48INBl\%2B0bd9\%2FWmFpZVt\%2FB5PjXtxFTi3\%2FZ0xorcSa4sz1vys5QHi727vI8BVXHcIU2Fu\%2Fvud\%2FfZB77PmHv5VNSewkDDpq14eKfHsatsRYOpOxcXcPN4N4AsnWpT\%2B7aOYAGUYq6PgD3OK9wmBrND9ZtoWxBrrDE1h4ce2sskINVYo0BXrF4JVc6PYyx4poX1xRCGZ\%2BzDHM9oE7TrtB\%2BdknALBYszbMkqixeK4PNQbcBUbqobz5DXSa5fcsDZ8zDTPotZIuw306DdGTpBJ7yQE\%2BgrgUAZ0VwLHFdf0vgrhSvi\%2BBtcDix1FN1MzyYaASRFfXs\%2BPWWXt\%2Fl\%2FmERKrvmWPFWpLcsR3MVZprjrBQx5UnRf9fYMjVvbnbuQMJzIBvSSOFVWTlfHisoo488lTZtoRICgBDHzuNbkqU0FRoLcizReh33aVZFKisBW5APtaMw1jMT3Pf7lAeCWePRHUt48oS4nDkjCKx7\%2B1WLlLQ8l6pOJCv8EAyV71E3d0qXC7VhDcSBrye9IXH20UDt1Watd5wh\%2Bprplzh1MtFwd8t4U5N6T4vA0dYmU33S28MAv1kB1wM9lvl3dRlhrsAarxHkq\%2B77im2\%2BVqIvhIn\%2BuOBcIMOaGoPjrVRlYnRkqUHPmQzCl0f8w7LkU\%2B9ubMAoDi\%2F48Nqy7\%2BTwsR2Qbaj\%2B1\%2F\%2FWb2o5ehk\%2B5\%2Bg8\%2BCoPk6t75hMC6olsOCiAD\%2FUTvvL31nJCWTRmzDCg6h5xnPZuaHthQSfwaZI5TFdMwAJFAcfHN6lbKoBTnPojqb3TZNftqx1BkFcZmwejipWVDLV1A0\%2Fg8uVKGy2gB7abpK1rM9q1OrpSnlXO1Id0x7WK69MvRiAXnV5rEfTaSxR0WGavfqJF5iWYbpUWY96EwvLdfCeebdivH2uTyU\%2BAeMTi9yZV8qPma8GHYXzj\%2FHlGEiSL\%2Bt1Wd9fZF5juRjUbI87DcPWxEBPtU6lB\%2Fx2zJDdT11trdeC6yR9v1bz8EG\%2Fy4PysoAUHsrqfpA6Vdq90onq3kPNrpSQST8fcS4aC6jF8lV2a\%2FfczDPHbRu5xx0yL1jFFeeNpfwKWrBUs6Q6OYG\%2BOGSrGcR0DgfO37qQYTjWWCXggC\%2BaYUfz2PstHsR0cXk7OBnV9RRvC8Na35p\%2F1G\%2BWae7QK1F1HDJhcSGEoJOHgDVbucrnx8vy8eMKAYLlQDcEFd19nhkZMAsQjIf7NVwnKEzuZLZ5r4yBND3oA4IanZSICNmRumTG2NS8rsZ\%2Fhhte4WW3TxcTgq0DXbcNwPiwMTWBklkVXAZqnhCiZzCap8Lze8Zz4\%2FYyYnfXaHNhTrDb4OI1aKiDPfQctsscIYCvjx9Q6Ws8VGRut\%2FdOYKMas2mTiP9XXaB\%2FyxLYZwDIgKutd\%2BfLUARDZDCdW9oq2Q6QIwl8dFEgt1\%2BrlwkOv4rTBuOf5Qb\%2F95JrhEFOTLWeOXVS0ERcl\%2F1U\%2FGx4K6GrwgUCJ830LXrLiid\%2FSTmObMGk0Klz1dCXgVuVmxaoGgiT0N\%2FCZXzvY8ky\%2BqRujqGTaaKKimm7t\%2B2t7N2jbEA3Ql0bkqK\%2BwU3qyzvc13Kha1sZ1\%2Fg2nIfDMDZ3ocJVENYJKr2bmllobcujb9eAndXSsteGZejdSHVlmyOPpCF3ERLlHbXjJWiyJvBvoam5KcXV0ojYf\%2FC\%2FmvyUt4fgN1ZwIukqQdnbSvdljF4lsvrWmB5XAbI5btqn\%2FRSbdPlQgVRHq5ro\%2FoJRnj118TIGpKSk7cuIDMix9l8t0sMFpEIc\%2FsqoZqnYfzk5UXgGDeP5Jtm5uVc7lvlve39b48EgXfVIp\%2BTReW0ThrRz7R8Dtn8Po8ESAlQJk5bVybxbKiDfN0PbnLViXZWTI3FFFrrpDuLo7LyjKHmTtwxYzrfAgbovpN5P9s13qb\%2FtPDZmjH8XuRzwbp5R7Ru4b3lWYNa6iOWk\%2BF2WD8F1RxnS8FgW0BhjfA34l4TJ\%2BRWO\%2BeD0LeGVtdhPtD366qXF8W3g\%2FrHmVJM9b7BtOzfj3YV34QZD2imZH84\%2FjMPMfAdwyGVGc5CiEpC6M5f4V2L5DEZ76\%2BogvVKVDprX9sNQfB3Hvt6ookIzZHBh7SHDvhcIcBpUVM0vs\%2Br\%2F7g1OA2CAfmMZf8vQJ0iICwxKZnMu\%2BJgL\%2Fa7GXfL2hBapnUS2QGGu2pkSSveWu4u86ga\%2FAc45sKsBkzBF8sMpLsmQxfKhuQEtHKvOtiaJd2ocZ6ILKIGSO4iiBPIEWapRL\%2F4jJT0ksyQWLJNjHBx2\%2F39MNB9MRwiTqMEwfFRNXfagdvNGXtUAZ4Yvl4LnyEfSQPLUaqnBU1Fge8bZ0ofUqbC73yuvVs6UwXiWdJGs93L8IBVcGKi1pnKsCPqokoWN6zeVBbBgDu6q\%2BM\%2FS8r\%2BcVWEUgneqXPGB3iTeFSXhnTz9Jy8SP9sTq9GY0aXID9ucJAol6MINeygBoHD9vpwKi19nFQ7Srj5mDT4Wd3sAT0GW0uSV7yPRR8NTRRnU3r475FGFusV8VOQeqXbauPJj\%2B6Em8ys13hrsC2MJozepYGL9u18ZZRaci0K3BDNmJw\%2BxssfAQQu5O5s\%2BHOe0oOI9t13r0R6Y\%2FO6bHE2LSqaul\%2BrQpmqVdeZX62KfsmLTX0Anqd8JkHIFWOZNMjKh5IU0lxZ9iHumaRX8Y4a106R2\%2FNvlAOrGAEojO9YNsa\%2FXE9TtZw6x3yMBCdguD7z3mCvDMhz0cCJIYSP38OvpmnAYEHYe\%2F\%2BeqDEh0FyDzuhzr4RnVMv0WdMf9864qui3Xyl2KLKZRcd6Hqcx1GwSs5\%2B\%2BIuyRnJC\%2FuSZcj1R6E1qhDFOENJHpUpLmiSFIVRyfq37ky2ZJl\%2BtV2Pe4KYYtC\%2Fv28JeMsTFvvDUq4fJTpjhI\%2BPYzUJ\%2FBaB6xjJ\%2FX\%2FuVA\%2B2VvOw9\%2BBUjy7rA0nFL21WcDfzjhsNJhtF0\%2FZOqCmAFn9mRqJwltLP96Ye1tqgKCpJ7cMz9LnypHdwnvF8DNELaWy8fSa5tkppT04pF9tQ2nnzvoTf\%2FtLo\%2BB34Ive3FzWJxi\%2BAT4hOTj\%2FWh71KLdrNqH88DcXEe\%2FMbUy3yiETE1QkBY9h0iL91Gr3aWCI\%2BYokrHZ\%2Fp2nDTuZwhvje\%2FAXiPeqrZ0E9kJhjxyYdD5GQwn7P9Oxg7Bq6EMtijU6BbNw\%2Bs4huKlya7hg9mqcyIYi8Ci63zJ9XcJ2a56rPN\%2FCft91\%2BlnJ8xameM6H2\%2BF30Xr\%2FwjtldENipTuTm2AsMq4k6aFSiKgDBJgzdVQ4JWhFqiHrK\%2FCSelhKL5V248TrO\%2Fb5mQOx2ntHy0u\%2BvFQ2sMp1Hx9zd\%2FUEInReKNdVFnNzZKZWpJQFEvMBlJmLCihfChEWZealncdbEz1D7zhG3wEMLOP7QR\%2B4wKIN2EzVfrY06L\%2BAQw8DckKHw6fp2A6\%2FnChx9j3foreKOZ3tsrE9vMMuSJCIRvZmiDzTv99Ck\%2BBC\%2FUTQ6\%2FAdSWQZ0i6jfhV\%2B8ThwvltUB2L1cmU9w4wO62AjGuQdt\%2FfreM0yAQfkZTm\%2FsBiKvLB1KHKsBZnY054bv3hIFbVzzP8iT4NBssvWOR9X3FGUv2OH22EzSVcaRzbAmdn1Mc23tI0GUA8HSrXymfM4p8zBWCCaYPiO4Uu5bTWQOMa\%2Fjb7906QmpxVgAQhuH4X\%2F4oGobsH3LMhxrIbqBUuZXEzV1HpaJhfW57FQRfA2oe2rJGLR\%2FjxXzIPt\%2BOctLVXzv9SlwnyhQhYtEX9TzT1k2ZynSK5CIWDISbXcrvZWa4NdclolSI34SRssTjEksPgpmsm25skmlqyzlV2Z45BEoue6\%2FhYVcq0gE4gGens\%2FNu8DkN89QRxA1A0zzi4Lqu8UISKxcOttD5vosQqvYOZSyuZNmykK2k8NCB6SeAmwBn3Mph8ygMbWDODpxEN\%2BJR8MOnZUzKYumGT4Oou5qZ6019\%2BS\%2Bl84NYrMUuPeZZ\%2ByHJCrupC9zv\%2BvjjwcGv5992tpzElcnOX8kzpCYKP8EPqbAO0aXIqCq8KnTwYI5KcZfoAYiMxZshT2Dzt0mHDmjkiSc0FM2qmDrzX46jv5VTV\%2F9YOV4xhColMc429CAs3KBQ20JUfCIOcnBbjzJYrUoX3lIvUX35JCMej3\%2BELurzlXlJlJuEbGozwsr\%2BLYsLyFbiAjZgmtaMZ6qDY03mtGzn1HfkZh35FR\%2Fu8vljZJ4iH8CF4fADNkvrP282OglHvXR9TRSwgY1TZ\%2Fqx4Z1iRDNypSQEu7h1K5iBOFfKQChN8rfc9Q3ES4Vqv4eUSWpM2aIegbb9HjINqbvAkexIuu2JyjbDPyxNBpo6PbSXXxhME97msifA1ANgY2Di\%2FsNrZtDmw0S0wgUL8bkjx48xqiOYgVADgE1riAJu1e\%2F\%2BLyOJ2\%2BYoRq65dM44rqv\%2FkLqPlYNEddJGP33uHHqi\%2Fx3c3vA0xv7oetRK3BhiE6ti\%2FXH5dGotS17MoquOqP0bDIqMJNq\%2F\%2BVb\%2BjPKL\%2B\%2FHFZppQC0oaoFRr5Och7F6\%2FIpwWorYaD0vlJvj1eywiqqDZux9WYMWX\%2BBOrFLitN1\%2Fyt\%2F3GXYq8bO0A63Po0Qe4j7JGGwN5jLcCUbzZ6aHau4bZ26H30Jdzn\%2BcEftyBnz049F\%2BSavNYuXCQalFGodP9b\%2Fpi2JsMacMyqNttVDrF\%2BRlHdE1vDu9RLN8hWLSz9\%2Brs0eRzdXlTecrDd32eJWgqF5DGMNxJzz2B\%2BIOc0cPwTkfeGTUFtHXf97uifY8x6to\%2FQ7kuvvi3x5rx\%2Bje12kwFIy68mZA2esKS3VOmqoVWoflg655IhrP\%2Fru9ggm\%2B6A7HtFVwY3rPJBJZ8aBpP6p53vw7Vms6YjlIsPnS62d6QEYZnqldD\%2BLW6pGJmkvf1vxsh2lJXOCQycwrF9jPGHn5bcFzD1\%2FMBYo\%2FhtDqbqpxn5QzUzu\%2F2lPZ6OyaZkNkrAw3AraMg\%2FA4hT\%2FnU8\%2FU\%2F8occy5kP17lag5JTptkxDxExR8kKgs\%2FuwzbH4VL2UDGmTZyFPj\%2FhZeR9ZuuU\%2B4JVnCdtQZK2RuBmPr3FL92DfRT\%2F\%2FF5BKmRMkM\%2FN21NId5hJ\%2Fl2KwkAI\%2BT3h\%2BEEO2wqLHL6HcoAecbT1LLKQ1pYPuce6Zens7x6k9SQkdsxwV0g\%2FCFGXN59fHvDEzDYjf67CKQm9mYkt\%2Fn9nsFCgf2To5Tt3z7WQhQ3GEB4Z\%2F1ubJ3BhBg\%2Bqy35C2juCsuskx5LGgW4QAJN7RsU\%2BdN07HJJ0tF2QxGd1aLmiFGDM3X2\%2Bp3nootKRKj9I5HXKWPZb5XqflOjBKbb5iD5LToTrKpoa9z1zAIENJopsvfD3TcZctNWgFNkJeWiy9E1bchqXwir15D6bLNWe5\%2FEt9EW7UX3Nj841piB1HGrC01O8taBAtsUjNx\%2Bc18VWZYWSmr75GtUKIhnosfKZ5gXtxW8Geb\%2FLg3FtIrwDaU6\%2FNbbRfSQhfoFE9Ou0ulHep830iNdtfD6kBFW6DdIR1jydU1F1OkaB0QefPYiKDYhhUe1dfyO8Kacq\%2BXvZ7qmmx532VO0\%2FsQP5JfHoxIoATqA3D2fOPKKekhMtXurgHCA7Wme8OZ\%2B\%2FhndO\%2Ff5\%2BrIy\%2F1xoXFS6Nnm\%2F1hLC1CxG1OoRx1U5rcDMZDIs9UXSw41j1uSYiIHitHx4K8OZaKESuVOB7UMvsLTVThE84b0deE5wapJpNe4u\%2FeZMFIDNh8APJZO1zKxmyXoX0tv1STAQrUP\%2B2NLiF1kK6qCu1HhqduRHu\%2BP18nIi79Gvoc\%2FP7XpzHaG1VS14lC6aiWIuSsHodWPEYKAkjSflJ\%2FW1CRMUdAL8YP5Mfn20AFDOf7Xgs6a6Bx\%2BT7o513Doun\%2BNkh4z6bGcyTJ8RRKG921aOLPp6QZlFqJQpKRD9Z\%2F23JwY1sZCVbgSDBr\%2B36G61TkW3t81B7ivU8uhXSW7iA8rb0rK2WfKYhe9vBl0eWt87ZGt\%2B\%2BqD0YE\%2F17U5TS5hf5FWBYn\%2F0t\%2F77ZYRxSSiijY18zwOt3dsAXCp\%2BY6ggyX5\%2BIjUJADVBpZF\%2F\%2BFvqJHjM8URlUr8rxDgfpIvlTe2\%2Bu\%2FA4uoObP7Fhp5VaglK0QAx6CThWkUZKAh87Zo\%2FHLT8WoPXZv3nkWNe97wLh6013jZ7yMe25\%2F4W\%2FtKedd3\%2Fbb3XdcTfVs7rJguQMiVDFhFedMPH6rckvcVd2J6aO3KKLQpCJjz5dtlfc\%2FVvrex1m1CuvwoaYadFm7f6Mpf\%2B\%2BtQbdSLs2MoRqWD6yomo9Re4hUJW1mTLDo9wwzpocPnbySXwrf8tih\%2FVtbkF7b71xP4StO6BxLgbJExirWAoexvIHqAD7iPOSi0YFyxjKte3nFYMeRs8c7E5vXEjYmcfc4gRrHscgBLmz\%2B2lvfXr7PYfDzu6PbNlBINABfzg7PKTLPprfaJMynciJSoL6Xr2IHlB7M22n2dyWB7ttc6QNxAwCOBeMDY2PTL99NC4VfO\%2FOzVY1tl5b0R42Yyqq\%2FZX09zFVFWqRJtrFdXylbISUkXs0XTarg\%2FsZh7iBNPwc\%2FNjuw8Tc\%2BMUcCvza70Zm7WpdS\%2BOIsNIyl3tRTT1UsfxjjIQdwX03d1iaIV38YqmkBp\%2F\%2B0nafdeqHOd9mCtSV8\%2FZA9RJLkPmldLwAFU4\%2BkwoIkieUkFflQQSqFsWRK6j9PXJKTxx7ct8Pg0ikmOtVNdQrWJJX1JWF39S5uZ8AcoPFYt2nFGCAdP2TbroaoxIJVrG0dmmrgZBA35\%2B\%2FFMIK7MRkS9I8Gno\%2FgvUIM9x\%2B599c52Y\%2F9qdiM2D8aojWTKXPuuAse42J\%2BvOtNGkGip37n44YLj9xXU3m1eaSSfeVaRr6qWJW8uEitaE5gqIe0VzWkR3wENmoVJHfWJvWozHc\%2Fg3JKDxYCnUBPW4KOdtv3pvYdrD\%2FzJTUEnkZSTe1Yt1l\%2Bkx59X6BfY02LprpUnU\%2FrlY884IqFfiJz7BCU78R4TpCwMeewWjY\%2FkhyguZsqyX1IFwewRody57FSUxQ0XF\%2BxPKI1VxcPnVOqhMaKnZB1lWBtizMN0NWp\%2BiBb3HEPHrCurEekzi6DIqYDxwkSyc\%2BuVHQOki88D\%2Fixq3NKRrOB5\%E2\%80\%A6
+
+    \hypertarget{background-information}{%
+\subsection{Background Information}\label{background-information}}
+
+\emph{C. difficile} is present in the healthy gut microbiome as a
+commensal, but disturbance of the gut microbiome by antibiotic treatment
+can allow this opportunistic pathogen to bloom, causing severe diarrhea
+and dehydration. There are about 500,000 cases of CDI in the US every
+year, which lead to about 15,0000 deaths. The majority of the cases are
+nosocomial infections, meaning they were aquired in a hospital by
+patients being treated for other conditions (often via antibiotic
+therapy). CDI is famously difficult to treat, since the conventional
+treatment, antibiotics, also drives \emph{C. difficile} blooms. About
+25\% of patients treated for \emph{C. difficile} experience recurrent
+infections, leading to further morbidity and mortality.
+
+A promising alternative therapy to antibiotics for CDI may be fecal
+matter transplants (FMT). Healthy donors can provide fecal samples,
+which can be delivered straight to a patient's GI tract. The thinking
+here is that the FMT nudges the recipient's gut microbiome out of a
+dysbiotic equilibrium and towards a healthy steady state that is
+resilient to reinfection by \emph{C. difficile}.
+
+FMT is also being evaluated as a treatment option for patients with
+ulcerative colitis (UC), an inflammatory bowel disease. The data used
+here, from PRJNA412501, is 16s amplicon data from FMT donors and
+patients (CDI+, UC+, and UC/CDI+) pre-FMT and then at two timepoints
+post-treatment.
+
+\hypertarget{question-how-does-fmt-affect-the-fecal-microbiome}{%
+\section{Question: How does FMT affect the fecal
+microbiome}\label{question-how-does-fmt-affect-the-fecal-microbiome}}
+
+    \hypertarget{data-importing}{%
+\subsection{1) Data Importing}\label{data-importing}}
+
+\hypertarget{make-sure-that-you-have-initialized-a-qiime2-ver.-2018.8-environment-in-conda.-instructions-here}{%
+\subsubsection{\texorpdfstring{Make sure that you have initialized a
+Qiime2 (ver. 2018.8) environment in conda. Instructions
+\href{https://docs.qiime2.org/2018.8/tutorials/filtering/}{here}}{Make sure that you have initialized a Qiime2 (ver. 2018.8) environment in conda. Instructions here}}\label{make-sure-that-you-have-initialized-a-qiime2-ver.-2018.8-environment-in-conda.-instructions-here}}
+
+    16s data from FMT donors and patients (CDI+, UC+, and UC/CDI+) preFMT, 1
+week postFMT, and 3 months postFMT) downloaded from published study,
+BioProject:PRJNA412501, downloaded with the ENA downloader software
+v1.2.2 to \texttt{data/FMT/raw}
+
+    \textbf{Sequence data downloaded from the ENA 11.27.18, 2:22pm}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PYZpc{}\PYZpc{}bash
+        java \PYZhy{}jar /*path\PYZus{}to\PYZus{}ena\PYZus{}downloader*/ena\PYZhy{}file\PYZhy{}downloader\PYZhy{}v1.2.2.jar
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PYZpc{}\PYZpc{}bash
+        \PY{n+nv}{SRRlist}\PY{o}{=}\PY{k}{\PYZdl{}(}find data/raw \PYZhy{}name \PY{l+s+s2}{\PYZdq{}*.fastq.gz\PYZdq{}} \PY{p}{|} xargs \PYZhy{}n \PY{l+m}{1} basename \PY{p}{|} cut \PYZhy{}d \PY{l+s+s1}{\PYZsq{}.\PYZsq{}} \PYZhy{}f \PY{l+m}{1} \PY{p}{|} sort \PY{p}{|} uniq\PY{k}{)}
+        \PY{n+nb}{echo} \PY{n+nv}{\PYZdl{}SRRlist}
+        
+        gunzip data/raw/* \PYZhy{}k
+        
+        \PY{n+nb}{echo} \PYZhy{}e \PY{l+s+s2}{\PYZdq{}sample\PYZhy{}id,absolute\PYZhy{}filepath,direction\PYZdq{}} \PYZgt{} scripts/FMT\PYZus{}manifest.csv
+        
+        \PY{k}{for} file in \PY{l+s+si}{\PYZdl{}\PYZob{}}\PY{n+nv}{SRRlist}\PY{p}{[@]}\PY{l+s+si}{\PYZcb{}}
+        \PY{k}{do}
+        
+        \PY{c+c1}{\PYZsh{}uncomment for paired end sequences}
+        \PY{c+c1}{\PYZsh{}for\PYZus{}link=\PYZdl{}(greadlink \PYZhy{}f \PYZdq{}data/raw/\PYZdq{}\PYZdl{}file\PYZdq{}\PYZus{}1.fastq\PYZdq{})}
+        \PY{c+c1}{\PYZsh{}rev\PYZus{}link=\PYZdl{}(greadlink \PYZhy{}f \PYZdq{}data/raw/\PYZdq{}\PYZdl{}file\PYZdq{}\PYZus{}2.fastq\PYZdq{})}
+        \PY{c+c1}{\PYZsh{}echo \PYZhy{}e \PYZdq{}\PYZdl{}file,\PYZdl{}for\PYZus{}link,forward\PYZdq{} \PYZgt{}\PYZgt{} scripts/FMT\PYZus{}manifest.csv}
+        \PY{c+c1}{\PYZsh{}echo \PYZhy{}e \PYZdq{}\PYZdl{}file,\PYZdl{}rev\PYZus{}link,reverse\PYZdq{} \PYZgt{}\PYZgt{} scripts/FMT\PYZus{}manifest.csv}
+        
+        \PY{c+c1}{\PYZsh{}uncomment for single end sequences}
+        \PY{n+nv}{link}\PY{o}{=}\PY{k}{\PYZdl{}(}greadlink \PYZhy{}f \PY{l+s+s2}{\PYZdq{}data/raw/\PYZdq{}}\PY{n+nv}{\PYZdl{}file}\PY{l+s+s2}{\PYZdq{}.fastq\PYZdq{}}\PY{k}{)}
+        \PY{n+nb}{echo} \PYZhy{}e \PY{l+s+s2}{\PYZdq{}}\PY{n+nv}{\PYZdl{}file}\PY{l+s+s2}{,}\PY{n+nv}{\PYZdl{}link}\PY{l+s+s2}{,forward}\PY{l+s+s2}{\PYZdq{}} \PYZgt{}\PYZgt{} scripts/FMT\PYZus{}manifest.csv
+        
+        \PY{k}{done}
+        head \PYZhy{}n \PY{l+m}{10} scripts/FMT\PYZus{}manifest.csv
+\end{Verbatim}
+
+
+    \hypertarget{importing-.fastq-files-into-qiime2-environment-via-fastq-manifest-format}{%
+\paragraph{\texorpdfstring{Importing \texttt{.fastq} files into Qiime2
+environment via fastq manifest
+format}{Importing .fastq files into Qiime2 environment via fastq manifest format}}\label{importing-.fastq-files-into-qiime2-environment-via-fastq-manifest-format}}
+
+Phred score is 33
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PYZpc{}\PYZpc{}bash
+        df \PYZhy{}h
+        \PY{n+nb}{export} \PY{n+nv}{TMPDIR}\PY{o}{=}/
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+ch}{\PYZsh{}!qiime tools import \PYZhy{}\PYZhy{}type \PYZsq{}SampleData[PairedEndSequencesWithQuality]\PYZsq{} \PYZhy{}\PYZhy{}input\PYZhy{}path scripts/FMT\PYZus{}manifest.csv \PYZhy{}\PYZhy{}output\PYZhy{}path data/demux.qza \PYZhy{}\PYZhy{}input\PYZhy{}format PairedEndFastqManifestPhred33}
+        \PY{o}{!}qiime tools import \PYZhy{}\PYZhy{}type \PY{l+s+s1}{\PYZsq{}SampleData[SequencesWithQuality]\PYZsq{}} \PYZhy{}\PYZhy{}input\PYZhy{}path scripts/FMT\PYZus{}manifest.csv \PYZhy{}\PYZhy{}output\PYZhy{}path data/demux.qza \PYZhy{}\PYZhy{}input\PYZhy{}format SingleEndFastqManifestPhred33
+\end{Verbatim}
+
+
+    \hypertarget{sequence-pre-processing}{%
+\subsubsection{2) Sequence
+Pre-processing}\label{sequence-pre-processing}}
+
+\hypertarget{running-fastqc-fastqc-v0.11.8-on-all-fastq-files}{%
+\paragraph{Running fastqc FastQC v0.11.8 on all fastq
+files}\label{running-fastqc-fastqc-v0.11.8-on-all-fastq-files}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}mkdir analyses/fastqc
+        \PY{o}{!}/Applications/bioinformatics/FastQC/fastqc data/raw/*.fastq \PYZhy{}o analyses/fastqc
+        \PY{o}{!}rm analyses/fastqc/*.zip
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}qiime demux summarize \PYZhy{}\PYZhy{}i\PYZhy{}data data/demux.qza \PYZhy{}\PYZhy{}o\PYZhy{}visualization data/demux.qzv \PYZhy{}\PYZhy{}verbose
+\end{Verbatim}
+
+
+    Based on readout from \texttt{demux.qzv} file and fastqc, trimming
+forward and reverse reads at pos 20 (from left) and 200 (from right)
+with DADA2. This step also completes denoising and chimera checking by
+consensus method. \includegraphics{attachment:image.png}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{\PYZsh{}denoising in DADA2}
+        \PY{o}{!}qiime dada2 denoise\PYZhy{}single \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{demultiplexed}\PY{o}{\PYZhy{}}\PY{n}{seqs} \PY{n}{data}\PY{o}{/}\PY{n}{demux}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{representative}\PY{o}{\PYZhy{}}\PY{n}{sequences} \PY{n}{data}\PY{o}{/}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{denoising}\PY{o}{\PYZhy{}}\PY{n}{stats} \PY{n}{data}\PY{o}{/}\PY{n}{denoising}\PY{o}{\PYZhy{}}\PY{n}{stats}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{trim}\PY{o}{\PYZhy{}}\PY{n}{left} \PY{l+m+mi}{20} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{trunc}\PY{o}{\PYZhy{}}\PY{n+nb}{len} \PY{l+m+mi}{200} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \hypertarget{make-summary-outputs}{%
+\subsubsection{3) Make summary outputs}\label{make-summary-outputs}}
+
+    \hypertarget{asv-table-summary-representative-sequences-and-denoising-stats}{%
+\subsubsection{ASV table summary, representative sequences, and
+denoising
+stats}\label{asv-table-summary-representative-sequences-and-denoising-stats}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}qiime feature\PYZhy{}table summarize \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{sample}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt}
+        
+        \PY{o}{!}qiime feature\PYZhy{}table tabulate\PYZhy{}seqs \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{data} \PY{n}{data}\PY{o}{/}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{data}\PY{o}{/}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qzv}
+        
+        \PY{o}{!}qiime metadata tabulate \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n+nb}{input}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{data}\PY{o}{/}\PY{n}{denoising}\PY{o}{\PYZhy{}}\PY{n}{stats}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{data}\PY{o}{/}\PY{n}{denoising}\PY{o}{\PYZhy{}}\PY{n}{stats}\PY{o}{.}\PY{n}{qzv}
+\end{Verbatim}
+
+
+    \begin{quote}
+\hypertarget{output-table.qzv}{%
+\subsubsection{\texorpdfstring{output:
+\texttt{table.qzv}}{output: table.qzv}}\label{output-table.qzv}}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+\end{quote}
+
+    \begin{quote}
+\hypertarget{output-denoising-stats.qzv}{%
+\subsubsection{\texorpdfstring{output:
+\texttt{denoising-stats.qzv}}{output: denoising-stats.qzv}}\label{output-denoising-stats.qzv}}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+\end{quote}
+
+    \hypertarget{retrieving-silva-99-identity-otu-naive-bayes-classifier-for-the-bacterial-16s-gene}{%
+\subsubsection{4) Retrieving SILVA 99\% identity OTU naive Bayes
+classifier for the bacterial 16S
+gene}\label{retrieving-silva-99-identity-otu-naive-bayes-classifier-for-the-bacterial-16s-gene}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+ch}{\PYZsh{}!wget \PYZhy{}O \PYZdq{}silva\PYZhy{}132\PYZhy{}99\PYZhy{}nb\PYZhy{}classifier.qza\PYZdq{} \PYZbs{}}
+        \PY{c+c1}{\PYZsh{}\PYZdq{}https://data.qiime2.org/2018.8/common/silva\PYZhy{}132\PYZhy{}99\PYZhy{}nb\PYZhy{}classifier.qza\PYZdq{} \PYZbs{}}
+        \PY{c+c1}{\PYZsh{}\PYZgt{} data/silva\PYZhy{}132\PYZhy{}99\PYZhy{}nb\PYZhy{}classifier.qza}
+\end{Verbatim}
+
+
+    \hypertarget{creating-feature-classifier-to-assign-each-of-the-asvs-in-rep-seqs.qza-to-an-otu-in-silva-database.}{%
+\subsubsection{\texorpdfstring{5) Creating feature classifier to assign
+each of the ASVs in \texttt{rep-seqs.qza} to an OTU in SILVA
+database.}{5) Creating feature classifier to assign each of the ASVs in rep-seqs.qza to an OTU in SILVA database.}}\label{creating-feature-classifier-to-assign-each-of-the-asvs-in-rep-seqs.qza-to-an-otu-in-silva-database.}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}\PY{n+nb}{echo} \PY{n+nv}{\PYZdl{}TMPDIR}
+        \PY{o}{!}qiime feature\PYZhy{}classifier classify\PYZhy{}sklearn \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{classifier} \PY{n}{data}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{l+m+mi}{132}\PY{o}{\PYZhy{}}\PY{l+m+mi}{99}\PY{o}{\PYZhy{}}\PY{n}{nb}\PY{o}{\PYZhy{}}\PY{n}{classifier}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{reads} \PY{n}{data}\PY{o}{/}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{classification} \PY{n}{analyses}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{n}{taxonomy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}qiime metadata tabulate \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n+nb}{input}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{analyses}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{n}{taxonomy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{n}{taxonomy}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}\PY{n+nb}{echo} \PY{n+nv}{\PYZdl{}TMPDIR}
+\end{Verbatim}
+
+
+    \hypertarget{filter-out-chloroplast-mitochondrial-contamination}{%
+\subsubsection{6) Filter out chloroplast, mitochondrial
+contamination}\label{filter-out-chloroplast-mitochondrial-contamination}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}qiime taxa filter\PYZhy{}table \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{taxonomy} \PY{n}{analyses}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{n}{taxonomy}\PY{o}{.}\PY{n}{qza}  \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{exclude} \PY{n}{mitochondria}\PY{p}{,}\PY{n}{chloroplast}\PY{p}{,}\PY{n}{eukaryota}\PY{p}{,}\PY{n}{archaea} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{filtered}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza}
+        
+        \PY{o}{!}qiime feature\PYZhy{}table summarize \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{sample}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \hypertarget{making-tree-for-phylogenetic-analysis}{%
+\subsubsection{7) Making tree for phylogenetic
+analysis}\label{making-tree-for-phylogenetic-analysis}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}qiime alignment mafft \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{sequences} \PY{n}{data}\PY{o}{/}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{alignment} \PY{n}{data}\PY{o}{/}\PY{n}{aligned}\PY{o}{\PYZhy{}}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+        
+        \PY{o}{!}qiime alignment mask \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{alignment} \PY{n}{data}\PY{o}{/}\PY{n}{aligned}\PY{o}{\PYZhy{}}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{masked}\PY{o}{\PYZhy{}}\PY{n}{alignment} \PY{n}{data}\PY{o}{/}\PY{n}{masked}\PY{o}{\PYZhy{}}\PY{n}{aligned}\PY{o}{\PYZhy{}}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+        
+        \PY{o}{!}qiime phylogeny fasttree \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{alignment} \PY{n}{data}\PY{o}{/}\PY{n}{masked}\PY{o}{\PYZhy{}}\PY{n}{aligned}\PY{o}{\PYZhy{}}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{data}\PY{o}{/}\PY{n}{unrooted}\PY{o}{\PYZhy{}}\PY{n}{tree}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+        
+        \PY{o}{!}qiime phylogeny midpoint\PYZhy{}root \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{data}\PY{o}{/}\PY{n}{unrooted}\PY{o}{\PYZhy{}}\PY{n}{tree}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{rooted}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{data}\PY{o}{/}\PY{n}{rooted}\PY{o}{\PYZhy{}}\PY{n}{tree}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \hypertarget{phylogenetic-analyses}{%
+\subsubsection{8) Phylogenetic Analyses}\label{phylogenetic-analyses}}
+
+Sampling depth of 65632 for \texttt{core-metrics-phylogenetic} sequence
+rarefaction set by picking lowest sequence number per sample as shown in
+\texttt{table-excl-mitochloro.qzv}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}qiime diversity core\PYZhy{}metrics\PYZhy{}phylogenetic \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{phylogeny} \PY{n}{data}\PY{o}{/}\PY{n}{rooted}\PY{o}{\PYZhy{}}\PY{n}{tree}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{sampling}\PY{o}{\PYZhy{}}\PY{n}{depth} \PY{l+m+mi}{43804} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{output}\PY{o}{\PYZhy{}}\PY{n+nb}{dir} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}qiime taxa barplot \PY{err}{\PYZbs{}}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{taxonomy} \PY{n}{analyses}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{n}{taxonomy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{barplot}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \#\#\# Collapsing sample by metadata-category ``Group'' to make a
+grouped barplot
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{o}{!}qiime feature\PYZhy{}table group \PY{err}{\PYZbs{}}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{axis} \PY{n}{sample} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{column} \PY{n}{Group} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{mode} \PY{n}{mean}\PY{o}{\PYZhy{}}\PY{n}{ceiling} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{grouped}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{group}\PY{o}{\PYZhy{}}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza}
+         
+         \PY{o}{!}qiime taxa barplot \PY{err}{\PYZbs{}}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{group}\PY{o}{\PYZhy{}}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{taxonomy} \PY{n}{analyses}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{n}{taxonomy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{group}\PY{o}{\PYZhy{}}\PY{n}{barplot}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Saved FeatureTable[Frequency] to: data/group-table-excl-mitochloro.qza}
+\textcolor{ansi-green}{Saved Visualization to: analyses/group-barplot.qzv}
+
+    \end{Verbatim}
+
+    \hypertarget{grouped-taxa-barplot-for-dominant-bacterial-phyla-generated-in-prism-from-group-barplot.qzv}{%
+\subsubsection{\texorpdfstring{grouped taxa barplot for dominant
+bacterial phyla, generated in Prism from
+\texttt{group-barplot.qzv}}{grouped taxa barplot for dominant bacterial phyla, generated in Prism from group-barplot.qzv}}\label{grouped-taxa-barplot-for-dominant-bacterial-phyla-generated-in-prism-from-group-barplot.qzv}}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{o}{!}qiime diversity alpha\PYZhy{}rarefaction \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{phylogeny} \PY{n}{data}\PY{o}{/}\PY{n}{rooted}\PY{o}{\PYZhy{}}\PY{n}{tree}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n+nb}{max}\PY{o}{\PYZhy{}}\PY{n}{depth} \PY{l+m+mi}{43804} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{alpha}\PY{o}{\PYZhy{}}\PY{n}{rarefaction}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+        
+        \PY{o}{!}mkdir \PYZhy{}p analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/export/
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{o}{!}qiime tools \PY{n+nb}{export} \PYZhy{}\PYZhy{}input\PYZhy{}path analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/bray\PYZus{}curtis\PYZus{}pcoa\PYZus{}results.qza \PY{err}{\PYZbs{}}
+                \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{output}\PY{o}{\PYZhy{}}\PY{n}{path} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{bray\PYZus{}curtis\PYZus{}pcoa\PYZus{}results}
+        \PY{o}{!}sed \PY{l+s+s1}{\PYZsq{}1,9d\PYZsq{}} analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/export/bray\PYZus{}curtis\PYZus{}pcoa\PYZus{}results/ordination.txt \PY{p}{|} head \PYZhy{}n \PY{l+m}{8} \PY{err}{\PYZbs{}}
+            \PY{o}{\PYZgt{}} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{bray\PYZus{}curtis\PYZus{}pcoa\PYZus{}results}\PY{o}{/}\PY{n}{coordinates}\PY{o}{.}\PY{n}{txt}
+        \PY{o}{!}head \PYZhy{}n \PY{l+m}{5} analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/export/bray\PYZus{}curtis\PYZus{}pcoa\PYZus{}results/ordination.txt \PY{p}{|} tail \PYZhy{}n \PY{l+m}{1} \PY{err}{\PYZbs{}}
+                \PY{o}{\PYZgt{}} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{bray\PYZus{}curtis\PYZus{}pcoa\PYZus{}results}\PY{o}{/}\PY{n}{pc\PYZus{}values}\PY{o}{.}\PY{n}{txt}
+        
+        \PY{o}{!}qiime tools \PY{n+nb}{export} \PYZhy{}\PYZhy{}input\PYZhy{}path analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/weighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results.qza \PY{err}{\PYZbs{}}
+                \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{output}\PY{o}{\PYZhy{}}\PY{n}{path} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{weighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results}
+        \PY{o}{!}sed \PY{l+s+s1}{\PYZsq{}1,9d\PYZsq{}} analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/export/weighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results/ordination.txt \PY{p}{|} head \PYZhy{}n \PY{l+m}{8} \PY{err}{\PYZbs{}}
+                \PY{o}{\PYZgt{}}  \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{weighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results}\PY{o}{/}\PY{n}{coordinates}\PY{o}{.}\PY{n}{txt}
+        \PY{o}{!}head \PYZhy{}n \PY{l+m}{5} analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/export/weighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results/ordination.txt \PY{p}{|} tail \PYZhy{}n \PY{l+m}{1} \PY{err}{\PYZbs{}}
+                \PY{o}{\PYZgt{}} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{weighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results}\PY{o}{/}\PY{n}{pc\PYZus{}values}\PY{o}{.}\PY{n}{txt}
+        
+        \PY{o}{!}qiime tools \PY{n+nb}{export} \PYZhy{}\PYZhy{}input\PYZhy{}path analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/unweighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results.qza \PY{err}{\PYZbs{}}
+                \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{output}\PY{o}{\PYZhy{}}\PY{n}{path} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{unweighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results}
+        \PY{o}{!}sed \PY{l+s+s1}{\PYZsq{}1,9d\PYZsq{}} analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/export/unweighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results/ordination.txt \PY{p}{|} head \PYZhy{}n \PY{l+m}{8} \PY{err}{\PYZbs{}}
+                \PY{o}{\PYZgt{}} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{unweighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results}\PY{o}{/}\PY{n}{coordinates}\PY{o}{.}\PY{n}{txt}
+        \PY{o}{!}head \PYZhy{}n \PY{l+m}{5} analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/export/unweighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results/ordination.txt \PY{p}{|} tail \PYZhy{}n \PY{l+m}{1} \PY{err}{\PYZbs{}}
+                \PY{o}{\PYZgt{}} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{export}\PY{o}{/}\PY{n}{unweighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results}\PY{o}{/}\PY{n}{pc\PYZus{}values}\PY{o}{.}\PY{n}{txt}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Exported analyses/excl-mitochloro-corediv-43804/bray\_curtis\_pcoa\_results.qza as OrdinationDirectoryFormat to directory analyses/excl-mitochloro-corediv-43804/export/bray\_curtis\_pcoa\_results}
+\textcolor{ansi-green}{Exported analyses/excl-mitochloro-corediv-43804/weighted\_unifrac\_pcoa\_results.qza as OrdinationDirectoryFormat to directory analyses/excl-mitochloro-corediv-43804/export/weighted\_unifrac\_pcoa\_results}
+\textcolor{ansi-green}{Exported analyses/excl-mitochloro-corediv-43804/unweighted\_unifrac\_pcoa\_results.qza as OrdinationDirectoryFormat to directory analyses/excl-mitochloro-corediv-43804/export/unweighted\_unifrac\_pcoa\_results}
+sed: stdout: Broken pipe
+
+    \end{Verbatim}
+
+    \begin{quote}
+\textbf{\texttt{alpha-rarefaction.qzv} by observed OTUs}\\
+\includegraphics{attachment:image.png} Demonstrates sufficient sampling
+depth. Most ASVs captured at \textasciitilde{}20000, plateau by sampling
+depth of 43804 indicates sufficient depth for confident diversity
+analysis. Unlikely that we are missing significant, abundance ASVs.
+\end{quote}
+
+    \hypertarget{analysis-of-alpha-diversity-metrics}{%
+\subsubsection{Analysis of Alpha Diversity
+Metrics}\label{analysis-of-alpha-diversity-metrics}}
+
+Statistical analysis: Kruskal-Wallis pairwise comparison between groups
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{o}{!}qiime diversity alpha\PYZhy{}group\PYZhy{}significance \PY{err}{\PYZbs{}}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{alpha}\PY{o}{\PYZhy{}}\PY{n}{diversity} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{shannon\PYZus{}vector}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{shannon\PYZus{}vector}\PY{o}{.}\PY{n}{qzv}
+        
+        \PY{o}{!}qiime diversity alpha\PYZhy{}group\PYZhy{}significance \PY{err}{\PYZbs{}}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{alpha}\PY{o}{\PYZhy{}}\PY{n}{diversity} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{faith\PYZus{}pd\PYZus{}vector}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+            \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{faith\PYZus{}pd\PYZus{}vector}\PY{o}{.}\PY{n}{qzv}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Saved Visualization to: analyses/excl-mitochloro-corediv-43804/shannon\_vector.qzv}
+\textcolor{ansi-green}{Saved Visualization to: analyses/excl-mitochloro-corediv-43804/faith\_pd\_vector.qzv}
+
+    \end{Verbatim}
+
+    \hypertarget{output-shannon_vector.qzv-image.png}{%
+\paragraph[output: \texttt{shannon\_vector.qzv}
+]{\texorpdfstring{output: \texttt{shannon\_vector.qzv}
+\protect\includegraphics{attachment:image.png}}{output: shannon\_vector.qzv image.png}}\label{output-shannon_vector.qzv-image.png}}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \hypertarget{analysis-of-beta-diversity-metrics-by-permanova}{%
+\subsubsection{Analysis of Beta Diversity Metrics by
+PERMANOVA}\label{analysis-of-beta-diversity-metrics-by-permanova}}
+
+Bray-Curtis (no incorporation of phylogeny/branch length information),
+Unweighted UniFrac (incorporates phylogeny, does not weight by relative
+abundance), and Weighted UniFrac. Used default of 999 permutations.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{o}{!}qiime diversity beta\PYZhy{}group\PYZhy{}significance \PY{err}{\PYZbs{}}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{distance}\PY{o}{\PYZhy{}}\PY{n}{matrix} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{bray\PYZus{}curtis\PYZus{}distance\PYZus{}matrix}\PY{o}{.}\PY{n}{qza}  \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{column} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Group}\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{method} \PY{n}{permanova}  \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{pairwise} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{bray\PYZus{}curtis\PYZus{}permanova}\PY{o}{.}\PY{n}{qzv}
+         
+         \PY{o}{!}qiime diversity beta\PYZhy{}group\PYZhy{}significance \PY{err}{\PYZbs{}}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{distance}\PY{o}{\PYZhy{}}\PY{n}{matrix} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{weighted\PYZus{}unifrac\PYZus{}distance\PYZus{}matrix}\PY{o}{.}\PY{n}{qza}  \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{column} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Group}\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{method} \PY{n}{permanova}  \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{pairwise} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{weighted\PYZus{}unifrac\PYZus{}permanova}\PY{o}{.}\PY{n}{qzv}
+         
+         \PY{o}{!}qiime diversity beta\PYZhy{}group\PYZhy{}significance \PY{err}{\PYZbs{}}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{distance}\PY{o}{\PYZhy{}}\PY{n}{matrix} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{unweighted\PYZus{}unifrac\PYZus{}distance\PYZus{}matrix}\PY{o}{.}\PY{n}{qza}  \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{column} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Group}\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{method} \PY{n}{permanova}  \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{pairwise} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{\PYZhy{}}\PY{n}{corediv}\PY{o}{\PYZhy{}}\PY{l+m+mi}{43804}\PY{o}{/}\PY{n}{unweighted\PYZus{}unifrac\PYZus{}permanova}\PY{o}{.}\PY{n}{qzv}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Saved Visualization to: analyses/excl-mitochloro-corediv-43804/bray\_curtis\_permanova.qzv}
+\textcolor{ansi-green}{Saved Visualization to: analyses/excl-mitochloro-corediv-43804/weighted\_unifrac\_permanova.qzv}
+\textcolor{ansi-green}{Saved Visualization to: analyses/excl-mitochloro-corediv-43804/unweighted\_unifrac\_permanova.qzv}
+
+    \end{Verbatim}
+
+    \begin{quote}
+\mbox{}%
+\hypertarget{weighted-unifrac}{%
+\paragraph{Weighted UniFrac}\label{weighted-unifrac}}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+\end{quote}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+\hypertarget{pairwise-comparisons-of-groups-did-not-yield-significance.-i-wonder-if-that-is-because-of-the-many-different-donors.-while-an-fmt-did-rescue-the-gut-microbiome-from-dysbiosis-it-may-not-have-converged-on-the-same-structure-because-of-different-donor-samples.}{%
+\paragraph{Pairwise comparisons of groups did not yield significance. I
+wonder if that is because of the many different donors. While an FMT did
+rescue the gut microbiome from dysbiosis, it may not have converged on
+the same structure because of different donor
+samples.}\label{pairwise-comparisons-of-groups-did-not-yield-significance.-i-wonder-if-that-is-because-of-the-many-different-donors.-while-an-fmt-did-rescue-the-gut-microbiome-from-dysbiosis-it-may-not-have-converged-on-the-same-structure-because-of-different-donor-samples.}}
+
+    \hypertarget{embedded-emperor-plots}{%
+\subsection{Embedded Emperor Plots}\label{embedded-emperor-plots}}
+
+Unfortunately, I did not end up getting this to work to the extend that
+I need it to. Without being able to color the points by corresponding
+metadata, this is useless.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}\PY{o}{,} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{from} \PY{n+nn}{emperor} \PY{k}{import} \PY{n}{Emperor}\PY{p}{,} \PY{n}{nbinstall}
+        \PY{k+kn}{from} \PY{n+nn}{skbio} \PY{k}{import} \PY{n}{OrdinationResults}
+        
+        \PY{n}{nbinstall}\PY{p}{(}\PY{p}{)}
+        
+        \PY{k}{def} \PY{n+nf}{load\PYZus{}mf}\PY{p}{(}\PY{n}{fn}\PY{p}{,} \PY{n}{index}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}SampleID}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{:}
+            \PY{n}{\PYZus{}df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{n}{fn}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s2}{\PYZdq{}}\PY{p}{,} \PY{n}{dtype}\PY{o}{=}\PY{n+nb}{str}\PY{p}{,} \PY{n}{keep\PYZus{}default\PYZus{}na}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{na\PYZus{}values}\PY{o}{=}\PY{p}{[}\PY{p}{]}\PY{p}{)}
+            \PY{n}{\PYZus{}df}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{n}{index}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            \PY{k}{return} \PY{n}{\PYZus{}df}
+        
+        \PY{n}{mf} \PY{o}{=} \PY{n}{load\PYZus{}mf}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scripts/emperor\PYZus{}map.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{res} \PY{o}{=} \PY{n}{OrdinationResults}\PY{o}{.}\PY{n}{read}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{analyses/excl\PYZhy{}mitochloro\PYZhy{}corediv\PYZhy{}43804/export/weighted\PYZus{}unifrac\PYZus{}pcoa\PYZus{}results/ordination.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{viz} \PY{o}{=} \PY{n}{Emperor}\PY{p}{(}\PY{n}{res}\PY{p}{,} \PY{n}{mf}\PY{p}{,} \PY{n}{remote}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+        \PY{n}{viz}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<IPython.core.display.HTML object>
+    \end{verbatim}
+
+    
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}5}]:} <emperor.core.Emperor at 0x109b05278>
+\end{Verbatim}
+            
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+    \hypertarget{differential-abundance-testing-with-gneiss}{%
+\subsubsection{9) Differential Abundance Testing with
+Gneiss}\label{differential-abundance-testing-with-gneiss}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{o}{!}qiime gneiss correlation\PYZhy{}clustering \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{clustering} \PY{n}{analyses}\PY{o}{/}\PY{n}{hierarchy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Saved Hierarchy to: analyses/hierarchy.qza}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{o}{!}qiime gneiss ilr\PYZhy{}hierarchical \PY{err}{\PYZbs{}}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{analyses}\PY{o}{/}\PY{n}{hierarchy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{balances} \PY{n}{analyses}\PY{o}{/}\PY{n}{balances}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+          \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/anaconda3/envs/qiime2-2018.8/lib/python3.5/site-packages/gneiss-0.4.4-py3.5.egg/gneiss/util.py:245: FutureWarning: '.reindex\_axis' is deprecated and will be removed in a future version. Use '.reindex' instead.
+\textcolor{ansi-green}{Saved FeatureTable[Balance] to: analyses/balances.qza}
+
+    \end{Verbatim}
+
+    Added ``CDI-pre-FMT'' field to \texttt{scripts/mapping.txt} to group all
+samples that are positive for CDI and before FMT.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{o}{!}qiime gneiss ols\PYZhy{}regression \PY{err}{\PYZbs{}}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{formula} \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{CDI\PYZus{}pre\PYZus{}FMT}\PY{l+s+s2}{\PYZdq{}} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{analyses}\PY{o}{/}\PY{n}{balances}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{analyses}\PY{o}{/}\PY{n}{hierarchy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{CDI\PYZus{}status\PYZus{}regression\PYZus{}summary}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Saved Visualization to: analyses/CDI\_status\_regression\_summary.qzv}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{o}{!}qiime gneiss dendrogram\PYZhy{}heatmap \PY{err}{\PYZbs{}}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{analyses}\PY{o}{/}\PY{n}{hierarchy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{column} \PY{n}{Group} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{color}\PY{o}{\PYZhy{}}\PY{n+nb}{map} \PY{n}{seismic} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{CDI\PYZus{}status\PYZus{}heatmap}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/anaconda3/envs/qiime2-2018.8/lib/python3.5/site-packages/gneiss-0.4.4-py3.5.egg/gneiss/util.py:245: FutureWarning: '.reindex\_axis' is deprecated and will be removed in a future version. Use '.reindex' instead.
+\textcolor{ansi-green}{Saved Visualization to: analyses/CDI\_status\_heatmap.qzv}
+
+    \end{Verbatim}
+
+    \hypertarget{making-differential-abundance-summaries-for-phylum-order-and-genus-split-a-vs.f}{%
+\paragraph{Making differential abundance summaries for phylum, order,
+and genus, split A
+vs.~F}\label{making-differential-abundance-summaries-for-phylum-order-and-genus-split-a-vs.f}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{o}{!}qiime gneiss balance\PYZhy{}taxonomy \PY{err}{\PYZbs{}}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{analyses}\PY{o}{/}\PY{n}{hierarchy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{taxonomy} \PY{n}{analyses}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{n}{taxonomy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{taxa}\PY{o}{\PYZhy{}}\PY{n}{level} \PY{l+m+mi}{2} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{balance}\PY{o}{\PYZhy{}}\PY{n}{name} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y0}\PY{l+s+s1}{\PYZsq{}} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{column} \PY{n}{CDI\PYZus{}pre\PYZus{}FMT} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{CDI\PYZus{}status\PYZus{}y0\PYZus{}taxa\PYZus{}L2\PYZus{}summary}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+         
+         \PY{o}{!}qiime gneiss balance\PYZhy{}taxonomy \PY{err}{\PYZbs{}}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{table} \PY{n}{data}\PY{o}{/}\PY{n}{table}\PY{o}{\PYZhy{}}\PY{n}{excl}\PY{o}{\PYZhy{}}\PY{n}{mitochloro}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{analyses}\PY{o}{/}\PY{n}{hierarchy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{taxonomy} \PY{n}{analyses}\PY{o}{/}\PY{n}{silva}\PY{o}{\PYZhy{}}\PY{n}{taxonomy}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{taxa}\PY{o}{\PYZhy{}}\PY{n}{level} \PY{l+m+mi}{4} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{balance}\PY{o}{\PYZhy{}}\PY{n}{name} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{y0}\PY{l+s+s1}{\PYZsq{}} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{file} \PY{n}{scripts}\PY{o}{/}\PY{n}{mapping}\PY{o}{.}\PY{n}{txt} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{n}{metadata}\PY{o}{\PYZhy{}}\PY{n}{column} \PY{n}{CDI\PYZus{}pre\PYZus{}FMT} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{o}\PY{o}{\PYZhy{}}\PY{n}{visualization} \PY{n}{analyses}\PY{o}{/}\PY{n}{CDI\PYZus{}status\PYZus{}y0\PYZus{}taxa\PYZus{}L4\PYZus{}summary}\PY{o}{.}\PY{n}{qzv} \PYZbs{}
+           \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{verbose}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/anaconda3/envs/qiime2-2018.8/lib/python3.5/site-packages/gneiss-0.4.4-py3.5.egg/gneiss/util.py:245: FutureWarning: '.reindex\_axis' is deprecated and will be removed in a future version. Use '.reindex' instead.
+\textcolor{ansi-green}{Saved Visualization to: analyses/CDI\_status\_y0\_taxa\_L2\_summary.qzv}
+/anaconda3/envs/qiime2-2018.8/lib/python3.5/site-packages/gneiss-0.4.4-py3.5.egg/gneiss/util.py:245: FutureWarning: '.reindex\_axis' is deprecated and will be removed in a future version. Use '.reindex' instead.
+\textcolor{ansi-green}{Saved Visualization to: analyses/CDI\_status\_y0\_taxa\_L4\_summary.qzv}
+
+    \end{Verbatim}
+
+    \begin{quote}
+\hypertarget{differential-abundance-plot-taxa-level-2phylum-a-vs.f-from-y0_taxa_l2_summary.qzv}{%
+\subsubsection{\texorpdfstring{Differential abundance plot (taxa level
+2/phylum), A vs.~F, from
+\texttt{y0\_taxa\_L2\_summary.qzv}}{Differential abundance plot (taxa level 2/phylum), A vs.~F, from y0\_taxa\_L2\_summary.qzv}}\label{differential-abundance-plot-taxa-level-2phylum-a-vs.f-from-y0_taxa_l2_summary.qzv}}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+\end{quote}
+
+    \hypertarget{heatmap-showing-patterns-of-change-between-groups}{%
+\subsubsection{Heatmap showing patterns of change between
+groups}\label{heatmap-showing-patterns-of-change-between-groups}}
+
+\begin{figure}
+\centering
+\includegraphics{attachment:image.png}
+\caption{image.png}
+\end{figure}
+
+This feels unresolved. I wish I had more time to try this a few more
+times.
+
+    \hypertarget{functional-profiling-of-microbiome-with-picrust}{%
+\subsubsection{10) Functional profiling of microbiome with
+PICRUSt}\label{functional-profiling-of-microbiome-with-picrust}}
+
+PICRUSt uses 16S count data to estimate the gene families contributed by
+each member of the microbiome.
+
+    First, download the PICRUSt reference phylogeny and tree
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{o}{!}wget http://kronos.pharmacology.dal.ca/public\PYZus{}files/tutorial\PYZus{}datasets/picrust2\PYZus{}tutorial\PYZus{}files/reference.fna.qza
+         
+         \PY{o}{!}wget http://kronos.pharmacology.dal.ca/public\PYZus{}files/tutorial\PYZus{}datasets/picrust2\PYZus{}tutorial\PYZus{}files/reference.tre.qza 
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+--2018-12-06 08:08:55--  http://kronos.pharmacology.dal.ca/public\_files/tutorial\_datasets/picrust2\_tutorial\_files/reference.fna.qza
+Resolving kronos.pharmacology.dal.ca{\ldots} 129.173.80.34
+Connecting to kronos.pharmacology.dal.ca|129.173.80.34|:80{\ldots} connected.
+HTTP request sent, awaiting response{\ldots} 200 OK
+Length: 4408600 (4.2M)
+Saving to: 'reference.fna.qza'
+
+reference.fna.qza   100\%[===================>]   4.20M  1.04MB/s    in 4.4s    
+
+2018-12-06 08:08:59 (981 KB/s) - 'reference.fna.qza' saved [4408600/4408600]
+
+--2018-12-06 08:09:00--  http://kronos.pharmacology.dal.ca/public\_files/tutorial\_datasets/picrust2\_tutorial\_files/reference.tre.qza
+Resolving kronos.pharmacology.dal.ca{\ldots} 129.173.80.34
+Connecting to kronos.pharmacology.dal.ca|129.173.80.34|:80{\ldots} connected.
+HTTP request sent, awaiting response{\ldots} 200 OK
+Length: 191187 (187K)
+Saving to: 'reference.tre.qza'
+
+reference.tre.qza   100\%[===================>] 186.71K   440KB/s    in 0.4s    
+
+2018-12-06 08:09:00 (440 KB/s) - 'reference.tre.qza' saved [191187/191187]
+
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{o}{!}qiime fragment\PYZhy{}insertion sepp \PY{err}{\PYZbs{}}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{representative}\PY{o}{\PYZhy{}}\PY{n}{sequences} \PY{n}{data}\PY{o}{/}\PY{n}{rep}\PY{o}{\PYZhy{}}\PY{n}{seqs}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{threads} \PY{l+m+mi}{1} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{reference}\PY{o}{\PYZhy{}}\PY{n}{alignment} \PY{n}{reference}\PY{o}{.}\PY{n}{fna}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{reference}\PY{o}{\PYZhy{}}\PY{n}{phylogeny} \PY{n}{reference}\PY{o}{.}\PY{n}{tre}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{output}\PY{o}{\PYZhy{}}\PY{n+nb}{dir} \PY{n}{data}\PY{o}{/}\PY{n}{frag}\PY{o}{\PYZhy{}}\PY{n}{tree}\PY{o}{/}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+\textcolor{ansi-green}{Saved Phylogeny[Rooted] to: data/frag-tree/tree.qza}
+\textcolor{ansi-green}{Saved Placements to: data/frag-tree/placements.qza}
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{o}{!}qiime picrust2 custom\PYZhy{}tree\PYZhy{}pipeline \PYZhy{}\PYZhy{}i\PYZhy{}table data/table\PYZhy{}excl\PYZhy{}mitochloro.qza \PY{err}{\PYZbs{}}
+                                             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{i}\PY{o}{\PYZhy{}}\PY{n}{tree} \PY{n}{data}\PY{o}{/}\PY{n}{frag}\PY{o}{\PYZhy{}}\PY{n}{tree}\PY{o}{/}\PY{n}{tree}\PY{o}{.}\PY{n}{qza} \PYZbs{}
+                                             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{output}\PY{o}{\PYZhy{}}\PY{n+nb}{dir} \PY{n}{analyses}\PY{o}{/}\PY{n}{q2}\PY{o}{\PYZhy{}}\PY{n}{picrust2\PYZus{}output} \PYZbs{}
+                                             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{threads} \PY{l+m+mi}{1} \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n}{hsp}\PY{o}{\PYZhy{}}\PY{n}{method} \PY{n}{mp} \PYZbs{}
+                                             \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{o}{\PYZhy{}}\PY{n+nb}{max}\PY{o}{\PYZhy{}}\PY{n}{nsti} \PY{l+m+mi}{2}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Error running this command:
+hsp.py -i EC -t /tmp/tmp0uyn3paz/placed\_seqs.tre -p 1 -o /tmp/tmp0uyn3paz/picrust2\_out/EC\_predicted -m mp
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{o}{!}\PY{n+nb}{echo} \PY{n+nv}{\PYZdl{}TMPDIR}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

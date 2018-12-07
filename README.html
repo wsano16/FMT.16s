@@ -126,21 +126,21 @@ $(document).ready(function () {
 
 <div id="readme" class="section level1">
 <h1>README</h1>
-<div id="updated-november-30-2018" class="section level6">
-<h6>(updated November 30, 2018)</h6>
+<div id="updated-december-6-2018" class="section level6">
+<h6>(updated December 6, 2018)</h6>
 </div>
-<div id="will-chiru16s-project-repository-for-fish546-autumn-2018" class="section level2">
-<h2>will-Chiru16S: project repository for FISH546 Autumn 2018</h2>
+<div id="fmt.16s-project-repository-for-fish546-autumn-2018" class="section level2">
+<h2>FMT.16s: project repository for FISH546 Autumn 2018</h2>
 <hr />
 <div id="general-description-of-your-project-including-goals-and-objectives" class="section level3">
 <h3>1. General Description of your project including goals and objectives</h3>
-<p>I will begin my project by doing microbiome analysis on 16S amplicons from Yue’s Tibetan chiru fecal samples. The goal of this will be to become familiar with the best practices of bioinformatics work and build an initial pipeline for later microbiome analyses.</p>
+<p>I began my project by doing microbiome analysis on 16S amplicons from Yue’s Tibetan chiru fecal samples. The goal of this was to become familiar with the best practices of bioinformatics work and build an initial pipeline for later microbiome analyses.</p>
 <p>My greater goal is to have my own data before the end of the quarter, which will be gut microbiome samples from African savannah, forest, and hybrid elephants spanning almost 20 years. The composition of these microbiomes has not been extensively studied, particularly in the case of hybrids. This study may yield greater insight into the gut microbial community of elephants and how it may vary continuously across hybrid zones.</p>
-<p>I did not generate these data in time for analysis in FISH546, so I have downloaded a published dataset on the microbiome of patients with <em>Clostridium difficile</em> associated diarrhea vs. healthy controls. I will use the pipeline I built around Yue’s samples for these human, generating diversity analyses, differential abundance plots, and PICRUSt functional analyses.</p>
+<p>I did not generate these data in time for analysis in FISH546, so I have downloaded a published dataset on the microbiome of patients with <em>Clostridium difficile</em> infections before and after fecal matter transplant vs. healthy controls. I used the pipeline I built around Yue’s samples for these human samples, generating diversity analyses, and some intitial differential abundance plots.</p>
 </div>
 <div id="a-description-of-your-repository-structure-including-what-each-directory-includes-and-describing-any-unique-files." class="section level3">
 <h3>2. A description of your repository structure, including what each directory includes, and describing any unique files.</h3>
-<p>My repository includes the <code>Chiru16S.ipynb</code> Jupyter notebook, which includes the analysis code I use for the initial work with Yue’s samples. Code from <code>Chiru16S.ipynb</code> has been to new Jupyter notebook, in directory <code>C_diff</code>. <code>C_diff</code> contains a parallel directory structure to its parent folder, separating all of my “final” output from intermediate files generated over the course of the project. All scripts or text files for importing data are included in the <code>scripts</code> directory. <code>data</code> includes all raw and processed data, divided between my own data, test data from a published study (NEWAtest), and Yue’s data. <code>analyses</code> includes all visualizations generated in QIIME2, which relies heavily on <code>.qzv</code> visualization files for data interpretation.</p>
+<p>My repository includes the <code>FMT.16s.ipynb</code> Jupyter notebook, which contains the bulk of the code and visualizations that I made in this class. All scripts or text files for importing data are included in the <code>scripts</code> directory. <code>data</code> includes all raw and processed data, though raw data has not been pushed to GitHub.<code>analyses</code> includes all visualizations generated in QIIME2, which relies heavily on <code>.qzv</code> visualization files for data interpretation. <code>wsano FISH546 Workflow.jpg</code> is a visual representation of my workflow, generation in draw.io</p>
 </div>
 <div id="a-projected-timeline-for-project-completion-through-week-10." class="section level3">
 <h3>3. A projected timeline for project completion through week 10.</h3>
@@ -151,24 +151,31 @@ $(document).ready(function () {
 <li><strong>week 7:</strong> <del>Download and do partial run additional dataset to test ease of translation.</del></li>
 <li><strong>week 8:</strong> <del>Set up mox account with HPC Club</del></li>
 <li><strong>week 9:</strong> <del>Run second data set through mox, run elephant data (hopefully)</del></li>
-<li><strong>week 10:</strong> Run elephant data, polish notebooks/repo for final submission</li>
+<li><strong>week 10:</strong> Run FMT data, polish notebooks/repo for final submission</li>
 </ul>
 </div>
 <div id="what-is-your-question" class="section level3">
 <h3>4. What is your question?</h3>
-<pre><code>     How does the structure and function of the gut microbiome vary between individuals with _Clostridium difficile_ infection (CDI), healthy controls, and are there emergent characteristics of the CDI microbiome that are consistent between patient populations in Germany, Indonesia, and Ghana?</code></pre>
+<pre><code>     _Question 1_: Can I build a microbiome analysis pipeline that is easily extensible to new datasets?
+     _Question 2_: How does the gut microbiome of patients with Clostridium difficile infections and ulcerative colitis change after fecal matter
+     transplant relative to the microbiome of a healthy donor?
+     </code></pre>
 </div>
 <div id="process-visualization" class="section level3">
 <h3>5. Process Visualization</h3>
-<pre><code>     Flowchart from QIIME2 `provenance` function, detailing sequence preprocessing, filtering, ASV assignment in DADA2, and subsequent diversity, differential abundance, and functional profile analyses in QIIME2</code></pre>
+<pre><code>     Flowchart data QIIME2 `provenance` function drawn up in draw.io, an online platform for creating workflow visualizations. Ths visualization will detail sequence preprocessing, filtering, ASV assignment in DADA2, and subsequent diversity, differential abundance, and functional profile analyses in QIIME2
+     
+     Visualization [here](https://github.com/wsano16/FMT.16s/blob/master/wsano%20FISH546%20Workflow.jpg)
+     </code></pre>
 </div>
-<div id="end-products-and-visualizations" class="section level3">
-<h3>6. End Products and Visualizations</h3>
+<div id="end-products-and-visualizations---contained-withing-fmt.16s.ipynb" class="section level3">
+<h3>6. End Products and Visualizations - contained withing FMT.16s.ipynb</h3>
 <pre><code>      - taxa relative abundance barplots
       - summary barplots for each region
       - EMPeror plots to visualize beta diversity metrics (Bray Curtis, (Un)weighted UniFrac) by ASVs
       - Differential abundance plots
-      - Summary PICRUSt output to communicate functional potential of sampled microbiomes</code></pre>
+      - Summary PICRUSt output to communicate functional potential of sampled microbiomes
+      </code></pre>
 </div>
 <div id="next-steps" class="section level3">
 <h3>7. Next Steps</h3>
